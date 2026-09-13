@@ -1,0 +1,133 @@
+/* Ping Cero — sistema compartido de la propuesta de upgrade
+   Basado en el sitio actual: Plus Jakarta Sans, indigo #1A1E42, coral #E07B3C, crema #FAF8F3.
+   Se agrega IBM Plex Mono solo para lecturas técnicas (precios, °C, dBm, códigos). */
+
+:root{
+  --bg:#FAF8F3;
+  --surface:#FFFFFF;
+  --sunk:#F0E8DC;
+  --ink:#1A1E42;
+  --ink-2:#44486A;
+  --muted:#6C6980;
+  --line:#E4DCD0;
+  --coral:#E07B3C;
+  --coral-ink:#A9531B;
+  --coral-soft:#FBE8DA;
+  --on-coral:#1A1E42;
+  --band:#1A1E42;
+  --band-2:#232859;
+  --band-ink:#F5F1EA;
+  --band-muted:#A9ACC8;
+  --band-line:rgba(245,241,234,.12);
+  --ok:#0E8A62;
+  --warn:#B07811;
+  --bad:#C43E33;
+  --focus:#E07B3C;
+  --font:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'Cascadia Mono',Consolas,monospace;
+  --max:1180px;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1229; --surface:#171B3A; --sunk:#1E2346; --ink:#F2EEE7; --ink-2:#C8C7D8;
+    --muted:#9799B5; --line:#2B3058; --coral:#EE8A4C; --coral-ink:#F4A06C;
+    --coral-soft:rgba(238,138,76,.14); --on-coral:#1A1E42; --band:#090B1F; --band-2:#141836;
+    --ok:#3CC79B; --warn:#E3AE44; --bad:#EF6D61;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1229; --surface:#171B3A; --sunk:#1E2346; --ink:#F2EEE7; --ink-2:#C8C7D8;
+  --muted:#9799B5; --line:#2B3058; --coral:#EE8A4C; --coral-ink:#F4A06C;
+  --coral-soft:rgba(238,138,76,.14); --on-coral:#1A1E42; --band:#090B1F; --band-2:#141836;
+  --ok:#3CC79B; --warn:#E3AE44; --bad:#EF6D61;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--font);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p{margin:0}
+h1,h2,h3{text-wrap:balance;letter-spacing:-.02em;line-height:1.08}
+a{color:inherit}
+img{max-width:100%;display:block}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* Titulares con el mismo contraste de pesos del logotipo: Ping (800) · Cero (300) */
+.display{font-weight:300}
+.display b{font-weight:800}
+.display em{font-style:normal;font-weight:800;color:var(--coral)}
+
+.eyebrow{font:600 12px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--coral-ink)}
+.band .eyebrow{color:var(--coral)}
+.lede{font-size:18px;color:var(--ink-2);max-width:60ch}
+
+/* Franja de propuesta */
+.proto{background:var(--sunk);color:var(--ink-2);font-size:13px;border-bottom:1px solid var(--line)}
+.proto .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;min-height:38px;flex-wrap:wrap}
+.proto a{color:var(--coral-ink);font-weight:600;text-decoration:none}
+.proto a:hover{text-decoration:underline}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:72px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);font-size:22px;letter-spacing:-.03em}
+.logo svg{width:34px;height:34px;flex:none}
+.logo b{font-weight:800}.logo span{font-weight:300}
+.pc-dot{width:6px;height:6px;border-radius:50%;background:var(--coral);display:inline-block;margin:0 4px;vertical-align:middle}
+.nav nav{margin-left:auto}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;padding:8px 12px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600;color:var(--ink-2)}
+.nav ul a:hover{color:var(--ink);background:var(--sunk)}
+.nav ul a[aria-current="page"]{color:var(--ink);box-shadow:inset 0 -2px 0 var(--coral);border-radius:0}
+@media (max-width:860px){.nav nav{display:none}.nav .btn{margin-left:auto}}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 22px;border-radius:999px;border:1px solid transparent;font-weight:700;font-size:15px;text-decoration:none;cursor:pointer;transition:transform .15s ease,background .15s ease;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--coral);color:var(--on-coral)}
+.btn-primary:hover{background:color-mix(in srgb,var(--coral) 88%,#000)}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink-2)}
+.band .btn-ghost{border-color:var(--band-line);color:var(--band-ink)}
+.btn-sm{padding:9px 16px;font-size:14px}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* Secciones */
+.sec{padding:88px 0}
+.sec-head{display:grid;gap:14px;margin-bottom:44px;max-width:720px}
+.sec-head h2{font-size:clamp(30px,4vw,44px)}
+.band{background:var(--band);color:var(--band-ink)}
+.band .lede,.band .sub{color:var(--band-muted)}
+.sunk{background:var(--sunk)}
+
+/* Chip de lectura técnica */
+.readout{display:inline-flex;align-items:baseline;gap:8px;font:500 13px/1 var(--mono);font-variant-numeric:tabular-nums;padding:8px 12px;border-radius:8px;background:var(--sunk);color:var(--ink)}
+.readout i{font-style:normal;color:var(--muted)}
+.band .readout{background:var(--band-2);color:var(--band-ink)}
+.band .readout i{color:var(--band-muted)}
+
+.flag{display:inline-flex;align-items:center;gap:6px;font:600 11px/1 var(--font);letter-spacing:.1em;text-transform:uppercase;padding:6px 9px;border-radius:6px;border:1px dashed var(--warn);color:var(--warn)}
+
+.chip{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:600;font-size:14px;cursor:pointer;color:var(--ink)}
+.chip:hover{border-color:var(--ink-2)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.price{font:500 15px/1.2 var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* Footer */
+.foot{background:var(--band);color:var(--band-muted);padding:56px 0 32px;font-size:14px}
+.foot .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+.foot .logo{color:var(--band-ink);margin-bottom:14px}
+.foot h4{color:var(--band-ink);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.foot a{text-decoration:none}.foot a:hover{color:var(--coral)}
+.foot .legal{grid-column:1/-1;border-top:1px solid var(--band-line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px}
+@media (max-width:760px){.foot .wrap{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}

@@ -1,0 +1,37 @@
+# Exported by three-d-stage
+newmtl indigo
+Kd 0.0103 0.0130 0.0545
+Ks 0.2000 0.2000 0.2000
+Ns 116
+d 1.0000
+
+newmtl chrome
+Kd 0.7379 0.7913 0.8879
+Ks 0.2000 0.2000 0.2000
+Ns 172
+d 1.0000
+
+newmtl indigo_deep
+Kd 0.0056 0.0070 0.0273
+Ks 0.2000 0.2000 0.2000
+Ns 84
+d 1.0000
+
+newmtl gunmetal
+Kd 0.2705 0.3231 0.4452
+Ks 0.2000 0.2000 0.2000
+Ns 136
+d 1.0000
+
+newmtl coral
+Kd 0.7454 0.1981 0.0452
+Ks 0.2000 0.2000 0.2000
+Ns 120
+d 1.0000
+
+newmtl coral_glow
+Kd 0.7454 0.1981 0.0452
+Ks 0.2000 0.2000 0.2000
+Ns 140
+d 1.0000
+

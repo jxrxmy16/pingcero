@@ -1,0 +1,180 @@
+<meta charset="utf-8">
+<title>Upgrade Ping Cero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="pc.css">
+<style>
+  .top{padding:40px 0 0}
+  .top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .intro{padding:56px 0 48px}
+  .intro h1{font-size:clamp(38px,5.4vw,64px);margin:16px 0 20px;max-width:18ch}
+  .intro .lede{max-width:64ch}
+  .stat{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+
+  h2.t{font-size:clamp(24px,2.8vw,32px);margin-bottom:8px}
+  .t-sub{color:var(--muted);font-size:15px;margin-bottom:24px;max-width:64ch}
+
+  .pages{border-top:1px solid var(--ink)}
+  .pg{display:grid;grid-template-columns:230px 1fr 1fr 150px;gap:28px;padding:26px 0;border-bottom:1px solid var(--line);align-items:start}
+  .pg .route{font:500 13px var(--mono);color:var(--muted)}
+  .pg h3{font-size:22px;margin:6px 0 12px}
+  .pg .k{font:600 11px/1 var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .pg p{font-size:15px;color:var(--ink-2)}
+  .pg .side{display:grid;gap:12px;justify-items:start}
+  .prio{font:600 12px/1 var(--font);padding:6px 10px;border-radius:999px}
+  .p1{background:var(--coral);color:#1A1E42}
+  .p2{background:var(--coral-soft);color:var(--coral-ink)}
+  .p3{background:var(--sunk);color:var(--ink-2)}
+  .pg a.open{font-weight:700;color:var(--coral-ink);text-decoration:none;font-size:15px}
+  .pg a.open:hover{text-decoration:underline}
+  @media (max-width:980px){.pg{grid-template-columns:1fr 1fr}.pg .side{grid-row:1;grid-column:2}}
+  @media (max-width:600px){.pg{grid-template-columns:1fr}.pg .side{grid-row:auto;grid-column:auto}}
+
+  .cols{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:start}
+  @media (max-width:900px){.cols{grid-template-columns:1fr}}
+  .finds{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .finds li{display:grid;grid-template-columns:92px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+  .sev{font:600 11px/1 var(--font);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border-radius:6px;justify-self:start;height:max-content}
+  .sev.bad{color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,transparent)}
+  .sev.warn{color:var(--warn);background:color-mix(in srgb,var(--warn) 14%,transparent)}
+  .finds strong{display:block;font-size:15px;margin-bottom:4px}
+  .finds p{font-size:14px;color:var(--ink-2)}
+  .finds q{font-style:normal;quotes:"“" "”"}
+  .keep{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+  .keep li{padding:14px 0;border-bottom:1px solid var(--line);font-size:15px;display:flex;justify-content:space-between;gap:12px}
+  .keep li span:last-child{font:400 13px var(--mono);color:var(--muted);text-align:right}
+  .sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px;margin-right:6px}
+
+  .phases{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  .phases li{display:grid;gap:10px;align-content:start}
+  .phases .n{font:500 13px/1 var(--mono);color:var(--coral);display:flex;align-items:center;gap:12px}
+  .phases .n::after{content:"";flex:1;height:1px;background:var(--band-line)}
+  .phases h3{font-size:19px}
+  .phases p{font-size:14px;color:var(--band-muted)}
+  .phases .need{font:400 12px/1.5 var(--mono);color:var(--band-ink);opacity:.8}
+  @media (max-width:900px){.phases{grid-template-columns:1fr 1fr}}
+  @media (max-width:520px){.phases{grid-template-columns:1fr}}
+
+  .impl{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .impl h3{font-size:17px;margin-bottom:8px}
+  .impl p{font-size:15px;color:var(--ink-2)}
+  .impl code{font:500 13px var(--mono);background:var(--sunk);padding:2px 6px;border-radius:5px}
+  @media (max-width:860px){.impl{grid-template-columns:1fr}}
+</style>
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="inicio.html" aria-label="Ping Cero"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+  <span class="readout"><i>propuesta</i>sep 2026</span>
+</div></header>
+
+<main>
+<section class="intro"><div class="wrap">
+  <span class="eyebrow">Upgrade de pingcero.cl</span>
+  <h1 class="display">De una landing a <b>un sitio que trabaja</b> por ti.</h1>
+  <p class="lede">Hoy pingcero.cl es una sola página (tema propio en WordPress) que manda todo a WhatsApp. Funciona, pero cada cliente escribe para preguntar lo mismo: qué tiene su equipo, cuánto cuesta y cómo va la reparación. Estas cinco páginas contestan eso antes del primer mensaje y conectan HolaPing con el negocio.</p>
+  <div class="stat">
+    <span class="readout"><i>páginas nuevas</i>5</span>
+    <span class="readout"><i>precios</i>catálogo 2026</span>
+    <span class="readout"><i>marca</i>#1A1E42 · #E07B3C</span>
+  </div>
+</div></section>
+
+<section class="wrap" aria-labelledby="pg-t">
+  <h2 class="t" id="pg-t">Las páginas</h2>
+  <p class="t-sub">Cada maqueta es navegable y funciona: los botones arman el mensaje de WhatsApp con la consulta del cliente.</p>
+  <div class="pages">
+    <article class="pg">
+      <div><span class="route">/</span><h3>Inicio</h3></div>
+      <div><div class="k">Qué resuelve</div><p>Un diagnóstico rápido en el hero: el cliente toca su síntoma y ve la causa probable, el servicio y el rango de precio, con el mensaje de WhatsApp listo.</p></div>
+      <div><div class="k">Se apoya en</div><p>El radar de la marca, el caso real de 94 °C → 66 °C, las dos líneas y el carrusel de marcas que ya están en el sitio.</p></div>
+      <div class="side"><span class="prio p1">Fase 1</span><a class="open" href="inicio.html">Abrir maqueta →</a></div>
+    </article>
+    <article class="pg">
+      <div><span class="route">/servicios</span><h3>Servicios y presupuesto</h3></div>
+      <div><div class="k">Qué resuelve</div><p>El cliente marca servicios y ve el rango total al tiro, con opción de domicilio. Pide el diagnóstico con el presupuesto ya escrito.</p></div>
+      <div><div class="k">Se apoya en</div><p>Los 8 precios del catálogo PDF 2026, la garantía de 30 días y las preguntas frecuentes actuales.</p></div>
+      <div class="side"><span class="prio p1">Fase 1</span><a class="open" href="servicios.html">Abrir maqueta →</a></div>
+    </article>
+    <article class="pg">
+      <div><span class="route">/holaping</span><h3>HolaPing</h3></div>
+      <div><div class="k">Qué resuelve</div><p>Casa del videopodcast. Cada episodio termina en un servicio relacionado, y el EP 01 trae un medidor de señal en dBm para que el visitante pruebe su caso.</p></div>
+      <div><div class="k">Se apoya en</div><p>El guion piloto del WiFi y los temas ⭐ del banco de temas.</p></div>
+      <div class="side"><span class="prio p2">Fase 2</span><a class="open" href="holaping.html">Abrir maqueta →</a></div>
+    </article>
+    <article class="pg">
+      <div><span class="route">/empresas</span><h3>Empresas</h3></div>
+      <div><div class="k">Qué resuelve</div><p>Convierte la línea “Empresas · a medida” en una página de venta: calculadora del costo de una caída, tres niveles de plan y un autodiagnóstico de 8 preguntas.</p></div>
+      <div><div class="k">Se apoya en</div><p>Los temas pyme del banco de HolaPing (respaldos, UPS, punto de venta, red de oficina).</p></div>
+      <div class="side"><span class="prio p2">Fase 3</span><a class="open" href="empresas.html">Abrir maqueta →</a></div>
+    </article>
+    <article class="pg">
+      <div><span class="route">/seguimiento</span><h3>Seguimiento de orden</h3></div>
+      <div><div class="k">Qué resuelve</div><p>El cliente ve la etapa de su reparación, el informe técnico con mediciones antes/después y la garantía. Menos “¿y cómo va?” por WhatsApp.</p></div>
+      <div><div class="k">Se apoya en</div><p>La promesa de “sin sorpresas”: muestra lo que se midió, no solo lo que se cobró. Orden de ejemplo.</p></div>
+      <div class="side"><span class="prio p3">Fase 4</span><a class="open" href="seguimiento.html">Abrir maqueta →</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap cols">
+  <div>
+    <h2 class="t">Inconsistencias del sitio actual</h2>
+    <p class="t-sub">Aparecieron al revisar el texto de la página y el catálogo. Conviene resolverlas antes de construir encima.</p>
+    <ul class="finds">
+      <li><span class="sev bad">Contradice</span><div><strong>¿Atienden a domicilio o no?</strong><p>El catálogo y el bloque de precios dicen <q>atención a domicilio con recargo por traslado</q>; la FAQ dice <q>por ahora trabajamos principalmente en nuestro taller</q>. Las maquetas usan la versión del catálogo.</p></div></li>
+      <li><span class="sev bad">Contradice</span><div><strong>Tiempo de respuesta</strong><p>Los sellos dicen <q>Respuesta inmediata</q>; el formulario promete <q>dentro de 24 h hábiles</q>. Elegir una promesa que se pueda cumplir siempre.</p></div></li>
+      <li><span class="sev warn">Ambiguo</span><div><strong>Garantía</strong><p>“Cómo funciona” dice <q>con garantía en el trabajo realizado</q>, sin plazo. El resto dice 30 días. Decir 30 días en todos lados.</p></div></li>
+      <li><span class="sev warn">Pendiente</span><div><strong>Reseñas reales</strong><p>Siguen sin testimonios. Activar la ficha de Google Business y pedir reseña al entregar cada equipo; las maquetas dejan el espacio reservado.</p></div></li>
+      <li><span class="sev warn">Pendiente</span><div><strong>Tema de WordPress y logos de marcas</strong><p>Verificar que se subió el <span class="mono">pingcero-theme.zip</span> con el arreglo del botón Línea 2, y bajar los SVG de marcas a <span class="mono">img/marcas/</span> para no depender del CDN.</p></div></li>
+    </ul>
+  </div>
+  <div>
+    <h2 class="t">Lo que se conserva</h2>
+    <p class="t-sub">Todo lo decidido en la fusión de agosto sigue igual.</p>
+    <ul class="keep">
+      <li><span><i class="sw" style="background:#1A1E42"></i>Indigo único</span><span>#1A1E42</span></li>
+      <li><span><i class="sw" style="background:#E07B3C"></i>Coral de marca</span><span>#E07B3C</span></li>
+      <li><span>Logotipo Ping<i class="pc-dot"></i>Cero</span><span>800 · 300</span></li>
+      <li><span>Isotipo radar</span><span>3 anillos</span></li>
+      <li><span>Tipografía</span><span>Plus Jakarta Sans</span></li>
+      <li><span>Carrusel de marcas</span><span>16 · CSS puro</span></li>
+      <li><span>Dos líneas de WhatsApp</span><span>2827 4749 · 5369 9695</span></li>
+    </ul>
+    <p class="t-sub" style="margin-top:18px">Se agrega <strong>IBM Plex Mono</strong> solo para cifras técnicas: precios, °C, dBm y códigos de orden.</p>
+  </div>
+</div></section>
+
+<section class="sec band"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Orden sugerido</span>
+    <h2 class="display" style="font-size:clamp(28px,3.6vw,40px)">Primero lo que <b>no requiere nada nuevo</b>.</h2>
+  </div>
+  <ol class="phases">
+    <li><div class="n">Fase 1</div><h3>Inicio + Servicios</h3><p>Usa precios y textos que ya existen. Es el cambio que más consultas ahorra.</p><span class="need">requiere: decidir domicilio y tiempo de respuesta</span></li>
+    <li><div class="n">Fase 2</div><h3>HolaPing</h3><p>Se publica junto con el EP 01. Cada episodio nuevo suma una fila y un enlace a servicio.</p><span class="need">requiere: EP 01 grabado · canal de YouTube</span></li>
+    <li><div class="n">Fase 3</div><h3>Empresas</h3><p>La calculadora y el autodiagnóstico funcionan desde el día uno; los planes necesitan alcances cerrados.</p><span class="need">requiere: validar los 3 planes</span></li>
+    <li><div class="n">Fase 4</div><h3>Seguimiento</h3><p>Parte simple: una planilla de Google con las órdenes que la página lee por código.</p><span class="need">requiere: registrar cada orden al recibir</span></li>
+  </ol>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <h2 class="t">Cómo llevarlo a WordPress</h2>
+  <p class="t-sub">Sin cambiar de plataforma: todo cabe en el tema propio que ya existe.</p>
+  <div class="impl">
+    <div><h3>Una plantilla por página</h3><p>Cada maqueta pasa a <code>page-servicios.php</code>, <code>page-empresas.php</code>, etc. dentro de <code>pingcero-theme</code>, compartiendo <code>header.php</code> y <code>footer.php</code>.</p></div>
+    <div><h3>Precios en un solo lugar</h3><p>Los servicios viven en un <code>precios.json</code> que leen la web, el diagnóstico rápido y el catálogo PDF. Cambias un precio una vez y no se desalinean.</p></div>
+    <div><h3>CSS compartido</h3><p>El archivo <code>pc.css</code> de estas maquetas ya trae los tokens de color, tipos y componentes, con modo oscuro incluido.</p></div>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <div>
+    <a class="logo" href="inicio.html"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+    <p>Propuesta de upgrade para pingcero.cl · septiembre 2026.</p>
+  </div>
+  <div><h4>Maquetas</h4><ul><li><a href="inicio.html">Inicio</a></li><li><a href="servicios.html">Servicios</a></li><li><a href="holaping.html">HolaPing</a></li></ul></div>
+  <div><h4>&nbsp;</h4><ul><li><a href="empresas.html">Empresas</a></li><li><a href="seguimiento.html">Seguimiento</a></li></ul></div>
+  <div class="legal"><span>© 2026 PingCero · Chile</span><span>Archivos en Documents/pingcero/propuesta-web</span></div>
+</div></footer>

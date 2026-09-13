@@ -1,0 +1,200 @@
+<meta charset="utf-8">
+<title>HolaPing · Ping Cero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="pc.css">
+<style>
+  .hp{padding:64px 0 80px}
+  .hp .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  @media (max-width:940px){.hp .wrap{grid-template-columns:1fr}}
+  .mark{display:flex;align-items:center;gap:10px;font-size:22px;letter-spacing:-.03em;margin-bottom:28px}
+  .mark svg{width:30px;height:30px}
+  .mark span{font-weight:300}.mark b{font-weight:800}
+  .hp h1{font-size:clamp(38px,5vw,62px);margin:14px 0 20px}
+  .facts{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0}
+  .subs{display:flex;gap:10px;flex-wrap:wrap}
+  .soon{opacity:.7;cursor:default}
+  .soon:hover{transform:none}
+
+  .cover{position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;padding:28px;display:flex;flex-direction:column;justify-content:space-between;
+    background:repeating-radial-gradient(circle at 80% 55%,transparent 0 44px,rgba(224,123,60,.2) 44px 45.5px),radial-gradient(circle at 80% 55%,rgba(224,123,60,.35),transparent 50%),var(--band-2);border:1px solid var(--band-line)}
+  .cover .top{display:flex;justify-content:space-between;font:500 13px var(--mono);color:var(--band-muted)}
+  .cover h2{font-size:clamp(22px,2.8vw,32px);max-width:15ch}
+  .cover .by{font-size:14px;color:var(--band-muted);margin-top:8px}
+  .play{position:absolute;right:28px;bottom:28px;width:64px;height:64px;border-radius:50%;background:var(--coral);display:grid;place-items:center;color:#1A1E42;border:0}
+  .play svg{width:22px;height:22px;margin-left:3px}
+
+  .ep{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  @media (max-width:940px){.ep{grid-template-columns:1fr}}
+  .ep h2{font-size:clamp(28px,3.6vw,42px);margin:14px 0 18px}
+  .ep ul{margin:24px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+  .ep li{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+  .ep li span{font:500 13px var(--mono);color:var(--muted);padding-top:2px}
+
+  .meter{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:32px;display:grid;gap:22px}
+  .meter h3{font-size:20px}
+  .meter .sub{font-size:14px;color:var(--muted);margin-top:4px}
+  .val{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .val output{font:500 clamp(44px,5vw,58px)/1 var(--mono);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+  .val output small{font-size:20px;color:var(--muted);margin-left:6px}
+  .pill{font:700 13px/1 var(--font);padding:9px 12px;border-radius:999px}
+  .scale{padding:0 8px}
+  .bar{position:relative;height:14px;border-radius:7px;display:flex;overflow:hidden}
+  .bar i{height:100%}
+  .marker{position:relative;height:0}
+  .marker span{position:absolute;top:-22px;width:4px;height:30px;margin-left:-2px;border-radius:2px;background:var(--ink);box-shadow:0 0 0 2px var(--surface);transition:left .15s}
+  .ticks{position:relative;height:36px;margin-top:10px;font:400 12px/1.3 var(--mono);color:var(--muted)}
+  .ticks span{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap}
+  .ticks span:first-child{transform:none}
+  .ticks span:last-child{transform:translateX(-100%)}
+  input[type=range]{width:100%;accent-color:var(--coral);margin:0}
+  .meter .fine{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+  .next-eps{border-top:1px solid var(--line)}
+  .ne{display:grid;grid-template-columns:52px 1fr 220px 96px;gap:20px;align-items:center;padding:18px 4px;border-bottom:1px solid var(--line)}
+  .ne .num{font:500 13px var(--mono);color:var(--muted)}
+  .ne h3{font-size:17px;letter-spacing:-.01em;line-height:1.3}
+  .ne .cat{font-size:13px;color:var(--muted)}
+  .ne a{font-size:14px;font-weight:600;color:var(--coral-ink);text-decoration:none}
+  .ne a:hover{text-decoration:underline}
+  .ne .st{justify-self:end;font:500 12px var(--mono);color:var(--muted)}
+  @media (max-width:760px){.ne{grid-template-columns:40px 1fr}.ne a,.ne .st{grid-column:2;justify-self:start}}
+
+  .pitch .wrap{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+  .pitch h2{font-size:clamp(28px,3.6vw,40px);max-width:22ch}
+</style>
+
+<div class="proto"><div class="wrap"><span><span class="flag">Maqueta</span>&nbsp; Propuesta de upgrade · <span class="mono">pingcero.cl/holaping</span></span><a href="index.html">← Todas las páginas</a></div></div>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="inicio.html" aria-label="Ping Cero, inicio"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="inicio.html">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="empresas.html">Empresas</a></li>
+    <li><a href="seguimiento.html">Seguimiento</a></li>
+    <li><a href="holaping.html" aria-current="page">HolaPing</a></li>
+  </ul></nav>
+  <a class="btn btn-primary btn-sm" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20necesito%20ayuda%20con%20mi%20PC" target="_blank" rel="noopener">WhatsApp</a>
+</div></header>
+
+<main>
+<section class="hp band"><div class="wrap">
+  <div>
+    <div class="mark"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".35"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><span>Hola</span><b>Ping</b></div>
+    <span class="eyebrow">El videopodcast de Ping Cero</span>
+    <h1 class="display">Tecnología de casa y pyme, <b>explicada por un ingeniero</b>.</h1>
+    <p class="lede">Cada semana, Jeremy, ingeniero en telecomunicaciones, toma un problema real que llega al taller y cuenta qué pasa de verdad y qué haría él. Sin la versión del call center.</p>
+    <div class="facts">
+      <span class="readout"><i>duración</i>10–15 min</span>
+      <span class="readout"><i>frecuencia</i>semanal</span>
+      <span class="readout"><i>estreno</i>EP 01</span>
+    </div>
+    <div class="subs">
+      <span class="btn btn-ghost soon" aria-disabled="true">YouTube · pronto</span>
+      <span class="btn btn-ghost soon" aria-disabled="true">Spotify · pronto</span>
+    </div>
+  </div>
+  <div class="cover" role="img" aria-label="Portada del episodio 1">
+    <div class="top"><span>HOLAPING · EP 01</span><span>PILOTO</span></div>
+    <div>
+      <h2>¿Por qué tu WiFi no llega a toda la casa?</h2>
+      <p class="by">Jeremy · ingeniero en telecomunicaciones</p>
+    </div>
+    <button class="play" type="button" aria-label="Reproducir (disponible al estreno)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></button>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap ep">
+  <div>
+    <span class="eyebrow">Episodio 01 · ≈ 12 min</span>
+    <h2 class="display">Por qué tu WiFi no llega a toda la casa <b>(y qué haría un ingeniero)</b></h2>
+    <p class="lede" style="font-size:16px">Contratar más megas no arregla la pieza del fondo. El problema casi nunca es el plan: es radio, muros y dónde quedó el router.</p>
+    <ul>
+      <li><span>01:00</span>El WiFi es radio: qué muros se comen la señal, del hormigón armado a la volcanita.</li>
+      <li><span>04:00</span>Hay dos WiFi, no uno: 2.4 GHz llega lejos, 5 GHz va rápido y muere al segundo muro.</li>
+      <li><span>06:30</span>Las rayitas no significan nada. Cómo se mide de verdad, en dBm.</li>
+      <li><span>09:00</span>La solución barata, la cara y la que casi nadie ofrece.</li>
+    </ul>
+  </div>
+
+  <div class="meter">
+    <div>
+      <h3>¿Tu señal alcanza?</h3>
+      <p class="sub">Mueve el control al valor que marca una app de análisis WiFi en la pieza donde falla.</p>
+    </div>
+    <div class="val">
+      <output id="out" for="dbm">−72<small>dBm</small></output>
+      <span class="pill" id="pill">Se corta</span>
+    </div>
+    <div class="scale">
+      <div class="bar" aria-hidden="true">
+        <i style="width:16.67%;background:var(--bad)"></i>
+        <i style="width:21.67%;background:var(--warn)"></i>
+        <i style="width:28.33%;background:color-mix(in srgb,var(--ok) 55%,var(--surface))"></i>
+        <i style="width:33.33%;background:var(--ok)"></i>
+      </div>
+      <div class="marker" aria-hidden="true"><span id="mk" style="left:30%"></span></div>
+      <div class="ticks" aria-hidden="true">
+        <span style="left:0%">−90</span><span style="left:16.67%">−80</span><span style="left:38.33%">−67</span><span style="left:66.67%">−50</span><span style="left:100%">−30</span>
+      </div>
+      <input type="range" id="dbm" min="-90" max="-30" step="1" value="-72" aria-label="Intensidad de señal en dBm">
+    </div>
+    <p id="msg" style="font-size:15px">Conectado, pero una videollamada o Netflix se van a cortar. El celular se aferra a esta red en vez de pasarse a datos móviles.</p>
+    <p class="fine">Mientras más cerca de cero, mejor. −67 dBm es el mínimo para video sin cortes.</p>
+  </div>
+</div></section>
+
+<section class="sec sunk"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Próximos episodios · tentativo</span>
+    <h2 class="display">Lo que viene, <b>y dónde te ayudamos</b>.</h2>
+    <p class="lede" style="font-size:16px">Cada episodio sale de un caso real del taller y termina en algo que puedes hacer tú, o en un servicio si prefieres que lo hagamos nosotros.</p>
+  </div>
+  <div class="next-eps">
+    <div class="ne"><span class="num">02</span><div><h3>Tu notebook no está lento por viejo: está lento por esto</h3><span class="cat">Hardware y mantención</span></div><a href="servicios.html">SSD / RAM · desde $15.000</a><span class="st">tentativo</span></div>
+    <div class="ne"><span class="num">03</span><div><h3>Ese “virus” que te sale en el navegador no es un virus</h3><span class="cat">Seguridad</span></div><a href="servicios.html">Eliminación de malware</a><span class="st">tentativo</span></div>
+    <div class="ne"><span class="num">04</span><div><h3>La regla 3-2-1 de respaldos explicada para gente normal</h3><span class="cat">Respaldos y datos</span></div><a href="empresas.html">Respaldos para pymes</a><span class="st">tentativo</span></div>
+    <div class="ne"><span class="num">05</span><div><h3>El router que te dio tu compañía es el problema</h3><span class="cat">Redes y WiFi</span></div><a href="servicios.html">Redes y WiFi · desde $30.000</a><span class="st">tentativo</span></div>
+    <div class="ne"><span class="num">06</span><div><h3>Cómo se infla el precio en el servicio técnico, visto desde adentro</h3><span class="cat">Precios y mercado</span></div><a href="servicios.html">Nuestras tarifas</a><span class="st">tentativo</span></div>
+    <div class="ne"><span class="num">07</span><div><h3>Google Drive no es un respaldo</h3><span class="cat">Respaldos y datos</span></div><a href="empresas.html">Autodiagnóstico pyme</a><span class="st">tentativo</span></div>
+  </div>
+</div></section>
+
+<section class="sec pitch"><div class="wrap">
+  <h2 class="display">¿Te pasó algo que debería ser <b>un episodio</b>?</h2>
+  <a class="btn btn-primary" href="https://wa.me/56928274749?text=Hola%20Jeremy%2C%20tengo%20un%20tema%20para%20HolaPing%3A%20" target="_blank" rel="noopener">Proponer un tema</a>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <div>
+    <a class="logo" href="inicio.html"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+    <p>Diagnóstico, reparación y mantención de PC y notebooks. Asociación de ingenieros · Santiago, Chile.</p>
+  </div>
+  <div><h4>Sitio</h4><ul><li><a href="servicios.html">Servicios y precios</a></li><li><a href="empresas.html">Empresas</a></li><li><a href="seguimiento.html">Seguimiento de orden</a></li><li><a href="holaping.html">HolaPing</a></li></ul></div>
+  <div><h4>Contacto</h4><ul><li>Línea 1 · <span class="mono">+56 9 2827 4749</span></li><li>Línea 2 · <span class="mono">+56 9 5369 9695</span></li><li><a href="https://pingcero.cl/catalogo_ping_cero.pdf">Catálogo en PDF</a></li></ul></div>
+  <div class="legal"><span>© 2026 PingCero · Chile</span><span>Tus datos se usan solo para coordinar tu diagnóstico. Nunca los vendemos.</span></div>
+</div></footer>
+
+<script>
+  const r = document.getElementById('dbm'), out = document.getElementById('out'), pill = document.getElementById('pill'),
+        mk = document.getElementById('mk'), msg = document.getElementById('msg');
+  const Z = [
+    { min:-50, t:'Excelente', c:'ok',   m:'Señal de sobra. Si igual anda lento, el problema está en otra parte: el plan, el router o el equipo.' },
+    { min:-67, t:'Bien',      c:'ok',   m:'Alcanza para videollamadas y streaming. Estás sobre el mínimo recomendado.' },
+    { min:-80, t:'Se corta',  c:'warn', m:'Conectado, pero una videollamada o Netflix se van a cortar. El celular se aferra a esta red en vez de pasarse a datos móviles.' },
+    { min:-91, t:'Inservible',c:'bad',  m:'Una rayita y “conectado”, pero no anda nada. Aquí no sirve un repetidor pegado al router: hay que mover o sumar puntos de acceso.' }
+  ];
+  function upd(){
+    const v = +r.value, z = Z.find(z => v >= z.min);
+    out.innerHTML = '−' + Math.abs(v) + '<small>dBm</small>';
+    pill.textContent = z.t;
+    pill.style.background = `color-mix(in srgb, var(--${z.c}) 16%, transparent)`;
+    pill.style.color = `var(--${z.c})`;
+    mk.style.left = ((v + 90) / 60 * 100) + '%';
+    msg.textContent = z.m;
+  }
+  r.addEventListener('input', upd); upd();
+</script>

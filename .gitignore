@@ -1,0 +1,17 @@
+# Dependencias y builds
+node_modules/
+dist/
+video/out/
+
+# Archivos pesados (videos, comprimidos, PDFs, imágenes generadas)
+*.mp4
+*.zip
+*.pdf
+Gemini_Generated_Image_*.jpg
+holaping_portada_youtube_*.png
+
+# Sistema y secretos
+.DS_Store
+Thumbs.db
+.env
+.env.*

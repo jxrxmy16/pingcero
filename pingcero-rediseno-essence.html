@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PingCero — Rediseño de estructura (essence)</title>
+<meta property="og:title" content="PingCero — Reparación y soporte técnico de PC en Chile">
+<meta property="og:description" content="Diagnóstico gratis, reparación y mantención de PC y notebooks en Chile. Garantía de 30 días.">
+<meta property="og:image" content="piece_a_diagnostic_signal.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="piece_a_diagnostic_signal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1A2440;
+    --navy-dark:#12182C;
+    --orange:#F2722C;
+    --orange-light:#FDE7D3;
+    --cream:#FAF7F1;
+    --white:#FFFFFF;
+    --gray:#6b7280;
+    --radius:18px;
+    --max:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Poppins',sans-serif;color:var(--navy);background:var(--white);line-height:1.55;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  .container{max-width:var(--max);margin:0 auto;padding:0 24px;}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);background:rgba(242,114,44,.12);padding:6px 14px;border-radius:999px;margin-bottom:18px;}
+  .eyebrow.onnavy{color:var(--orange);background:rgba(242,114,44,.18);}
+  h1,h2,h3,h4{font-weight:800;letter-spacing:-.01em;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:700;font-size:15px;transition:transform .15s ease, box-shadow .15s ease;border:2px solid transparent;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-orange{background:var(--orange);color:var(--white);box-shadow:0 10px 24px -6px rgba(242,114,44,.55);}
+  .btn-outline{border-color:rgba(255,255,255,.55);color:var(--white);}
+  .btn-navy{background:var(--navy);color:var(--white);}
+  .btn-white{background:var(--white);color:var(--orange);}
+
+  /* HEADER */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(250,247,241,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(26,36,64,.06);}
+  .nav-wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--max);margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:8px;font-size:20px;font-weight:800;color:var(--navy);}
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--orange);}
+  nav.main-links{display:flex;gap:30px;}
+  nav.main-links a{color:#5b6172;font-size:14px;font-weight:600;}
+  nav.main-links a:hover{color:var(--orange);}
+  .nav-cta{display:flex;align-items:center;gap:16px;}
+  .nav-cta .phone{color:var(--navy);font-weight:600;font-size:14px;}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+  .burger span{width:24px;height:2px;background:var(--navy);}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(180deg, rgba(18,24,44,.6), rgba(18,24,44,.88)), url('https://pingcero.cl/wp-content/themes/pingcero-theme/img/hero-mantencion.png') center/cover no-repeat;color:var(--white);padding-top:100px;}
+  .hero-inner{max-width:640px;}
+  .hero h1{font-size:clamp(38px,6vw,64px);line-height:1.05;margin-bottom:20px;}
+  .hero h1 em{color:var(--orange);font-style:normal;}
+  .hero p{font-size:18px;color:rgba(255,255,255,.85);margin-bottom:32px;max-width:480px;}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:50px;}
+  .hero-stat{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:10px 18px;border-radius:14px;font-size:13px;}
+  .hero-stat b{color:var(--orange);}
+
+  /* INTRO + BENEFITS */
+  .section{padding:96px 0;}
+  .section.cream{background:var(--cream);}
+  .section.navy{background:var(--navy-dark);color:var(--white);}
+  .section.white{background:var(--white);}
+  .center{text-align:center;}
+  .section h2{font-size:clamp(28px,4vw,42px);max-width:760px;}
+  .center h2{margin:0 auto 12px;}
+  .lead{color:var(--gray);max-width:680px;margin:0 auto 56px;font-size:16px;}
+  .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+  .benefit{text-align:center;}
+  .benefit .icon{width:54px;height:54px;border-radius:14px;background:var(--orange-light);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+  .benefit .icon svg{stroke:var(--orange);}
+  .benefit p{color:var(--navy);font-weight:700;font-size:15px;}
+
+  /* DIFFERENTIATORS */
+  .diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;margin-top:48px;}
+  .diff-card .icon{width:56px;height:56px;border-radius:14px;background:var(--orange);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
+  .diff-card .icon svg{stroke:var(--white);}
+  .diff-card h3{font-size:16px;letter-spacing:.04em;text-transform:uppercase;margin-bottom:10px;color:var(--white);}
+  .diff-card p{color:rgba(255,255,255,.7);font-size:15px;}
+
+  /* TRUST */
+  .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .trust-box{background:var(--orange-light);border-radius:var(--radius);padding:44px;}
+  .trust-box h2{font-size:30px;margin-bottom:18px;}
+  .trust-box p{color:#3c4150;margin-bottom:14px;}
+  .trust-img{position:relative;}
+  .trust-img img{border-radius:var(--radius);box-shadow:0 30px 60px -20px rgba(26,36,64,.35);}
+
+  /* COMO FUNCIONA (dark) */
+  .step-icon{width:54px;height:54px;border-radius:50%;border:2px solid var(--orange);background:transparent;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+  .step-icon span{color:var(--orange);font-weight:800;}
+
+  /* TESTIMONIALS */
+  .testi-note{text-align:center;color:var(--gray);font-size:13px;font-style:italic;margin-top:14px;margin-bottom:46px;}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .testi-card{background:var(--white);border:1px solid #ececec;border-radius:var(--radius);padding:30px;box-shadow:0 18px 40px -28px rgba(26,36,64,.25);}
+  .testi-card p.quote{font-size:15px;color:#2c2f3a;margin-bottom:18px;}
+  .testi-card .signature{font-weight:700;font-size:14px;color:var(--navy);}
+
+  /* LOGO CLOUD */
+  .brands-row{display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:40px;filter:grayscale(1);opacity:.6;}
+  .brand-logo{height:30px;width:auto;display:block;}
+  .brand-fallback{display:none;font-weight:800;font-size:20px;color:var(--navy);}
+
+  /* CTA BANNER */
+  .cta-banner{background:var(--orange);padding:54px 0;}
+  .cta-banner .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+  .cta-banner h2{font-size:26px;color:var(--white);}
+  .cta-banner .lines{display:flex;gap:18px;flex-wrap:wrap;}
+
+  /* FOOTER */
+  footer{background:var(--navy-dark);color:rgba(255,255,255,.7);padding:70px 0 0;}
+  .footer-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,.08);}
+  .footer-brand .logo{color:var(--white);}
+  .footer-brand p{color:rgba(255,255,255,.6);margin:14px 0 18px;font-size:14px;max-width:340px;}
+  .footer-brand .line{font-size:14px;color:var(--white);font-weight:600;margin-bottom:6px;}
+  .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .footer-links a{font-size:14px;color:rgba(255,255,255,.75);padding:6px 0;display:block;}
+  .footer-links a:hover{color:var(--orange);font-weight:600;}
+
+  .privacy-strip{background:var(--navy-dark);color:rgba(255,255,255,.65);padding:34px 0;margin-top:0;}
+  .privacy-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:24px;}
+  .privacy-grid .item{display:flex;gap:12px;font-size:13px;}
+  .privacy-grid .item .icon{width:34px;height:34px;flex:none;border-radius:8px;background:rgba(242,114,44,.15);display:flex;align-items:center;justify-content:center;}
+  .privacy-grid .item .icon svg{stroke:var(--orange);}
+  .bottom-line{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.45);padding-top:20px;border-top:1px solid rgba(255,255,255,.1);flex-wrap:wrap;gap:10px;}
+  .bottom-line a{color:rgba(255,255,255,.6);}
+
+  /* FIGURE BANNERS (Diagnostic Order artwork) */
+  .figure-banner{padding:70px 0;}
+  .figure-banner img{width:100%;border-radius:var(--radius);box-shadow:0 30px 60px -20px rgba(26,36,64,.35);}
+  .figure-caption{margin-top:16px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);text-align:center;}
+
+  @media(max-width:880px){
+    nav.main-links, .nav-cta .phone{display:none;}
+    .burger{display:flex;}
+    .grid-4{grid-template-columns:repeat(2,1fr);}
+    .diff-grid{grid-template-columns:1fr;}
+    .trust-grid{grid-template-columns:1fr;}
+    .testi-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .privacy-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#" class="logo"><span class="dot"></span>Ping Cero</a>
+    <nav class="main-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#quienes-somos">Nosotros</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="#pagos">Pagos</a>
+    </nav>
+    <div class="nav-cta">
+      <span class="phone">+56 9 2827 4749</span>
+      <a class="btn btn-orange" style="padding:10px 20px;font-size:13px;" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20necesito%20ayuda%20con%20mi%20PC">WhatsApp</a>
+    </div>
+    <div class="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
+    <span class="eyebrow onnavy">Disponibles ahora</span>
+    <h1>Tu PC de vuelta en <em>cero</em> problemas.</h1>
+    <p>Diagnóstico, reparación y customización de computadores. Rápido, directo y sin vueltas.</p>
+    <div class="hero-actions">
+      <a class="btn btn-orange" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20necesito%20ayuda%20con%20mi%20PC">Escríbenos por WhatsApp</a>
+      <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+    </div>
+    <div class="hero-stat">Pasta térmica · Temperatura <b>↓ 28°C</b> (94°C → 66°C)</div>
+  </div>
+</section>
+
+<!-- FIGURA — Pieza A: Diagnostic Order -->
+<section class="figure-banner cream">
+  <div class="container">
+    <img src="piece_a_diagnostic_signal.png" alt="Diagrama diagnóstico — precisión y detección de fallas, estilo plano técnico">
+    <p class="figure-caption">Diagnóstico visual — no solo un eslogan</p>
+  </div>
+</section>
+
+<!-- INTRO + BENEFICIOS -->
+<section class="section cream" id="beneficios">
+  <div class="container center">
+    <span class="eyebrow">Por qué Ping Cero</span>
+    <h2>Soporte técnico real, sin vueltas y con garantía.</h2>
+    <p class="lead">El diagnóstico siempre es gratis y cada trabajo sale con garantía de 30 días. Así de simple.</p>
+    <div class="grid-4">
+      <div class="benefit">
+        <div class="icon"><svg width="26" height="26" fill="none" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <p>Diagnóstico gratis</p>
+      </div>
+      <div class="benefit">
+        <div class="icon"><svg width="26" height="26" fill="none" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg></div>
+        <p>Garantía 30 días</p>
+      </div>
+      <div class="benefit">
+        <div class="icon"><svg width="26" height="26" fill="none" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+        <p>Respuesta inmediata</p>
+      </div>
+      <div class="benefit">
+        <div class="icon"><svg width="26" height="26" fill="none" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg></div>
+        <p>Ingenieros del rubro</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIADORES -->
+<section class="section navy" id="quienes-somos">
+  <div class="container">
+    <span class="eyebrow onnavy">Soporte técnico, bien hecho</span>
+    <h2 style="max-width:600px;margin-bottom:0;color:var(--white);">Ingenieros de verdad, con título y experiencia.</h2>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="icon"><svg width="24" height="24" fill="none" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/></svg></div>
+        <h3>Ingenieros del rubro</h3>
+        <p>Formación universitaria en tecnología e informática. No técnicos improvisados — ingenieros.</p>
+      </div>
+      <div class="diff-card">
+        <div class="icon"><svg width="24" height="24" fill="none" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <h3>Años en el rubro</h3>
+        <p>Experiencia acumulada resolviendo problemas reales de hardware y software en todo tipo de equipos.</p>
+      </div>
+      <div class="diff-card">
+        <div class="icon"><svg width="24" height="24" fill="none" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M13 15c2 0 5 1.5 5 5"/></svg></div>
+        <h3>Trabajo en equipo</h3>
+        <p>Somos una asociación — los casos difíciles los resolvemos entre todos para darte la mejor respuesta.</p>
+      </div>
+      <div class="diff-card">
+        <div class="icon"><svg width="24" height="24" fill="none" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg></div>
+        <h3>Atención a domicilio</h3>
+        <p>Vamos a tu casa u oficina coordinando todo por WhatsApp, con recargo según comuna.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIANZA -->
+<section class="section white">
+  <div class="container trust-grid">
+    <div class="trust-box">
+      <span class="eyebrow">Quiénes somos</span>
+      <h2>Una asociación de ingenieros, no un local cualquiera.</h2>
+      <p>Somos una asociación de ingenieros expertos en soporte y tecnología, con títulos del rubro y años de experiencia resolviendo problemas reales.</p>
+      <p>No improvisamos: cada caso tiene detrás a alguien que ya lo ha enfrentado antes, y cuando el problema es difícil, lo resolvemos entre todos.</p>
+      <a class="btn btn-navy" style="margin-top:10px;" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20ustedes">Conócenos por WhatsApp</a>
+    </div>
+    <div class="trust-img">
+      <img src="https://pingcero.cl/wp-content/themes/pingcero-theme/img/detalle-cpu.png" alt="Detalle de limpieza interna y disipador de un equipo en reparación">
+    </div>
+  </div>
+</section>
+
+<!-- FIGURA — Pieza B: Diagnostic Order -->
+<section class="figure-banner cream">
+  <div class="container">
+    <img src="piece_b_cross_section.png" alt="Diagrama de corte transversal — problema resuelto, estilo plano técnico">
+    <p class="figure-caption">Cada reparación, documentada y con garantía</p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section navy" id="como-funciona">
+  <div class="container center">
+    <span class="eyebrow onnavy">Cómo funciona</span>
+    <h2 style="color:var(--white);">Tres pasos y tu PC anda.</h2>
+    <div class="grid-4" style="grid-template-columns:repeat(3,1fr);margin-top:50px;">
+      <div class="benefit">
+        <div class="step-icon"><span>01</span></div>
+        <h3 style="margin-bottom:8px;font-size:17px;color:var(--white);">Nos contactas</h3>
+        <p style="color:rgba(255,255,255,.65);font-weight:400;font-size:14px;">Escríbenos por WhatsApp y cuéntanos qué le pasa a tu equipo. Te respondemos de inmediato.</p>
+      </div>
+      <div class="benefit">
+        <div class="step-icon"><span>02</span></div>
+        <h3 style="margin-bottom:8px;font-size:17px;color:var(--white);">Lo revisamos</h3>
+        <p style="color:rgba(255,255,255,.65);font-weight:400;font-size:14px;">Hacemos el diagnóstico gratis y te decimos qué tiene y cuánto vale. Sin sorpresas ni cobros ocultos.</p>
+      </div>
+      <div class="benefit">
+        <div class="step-icon"><span>03</span></div>
+        <h3 style="margin-bottom:8px;font-size:17px;color:var(--white);">Te lo devolvemos andando</h3>
+        <p style="color:rgba(255,255,255,.65);font-weight:400;font-size:14px;">Reparamos el equipo y te lo entregamos funcionando, con garantía de 30 días.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="section white" id="testimonios">
+  <div class="container center">
+    <span class="eyebrow">Lo que dicen nuestros clientes</span>
+    <h2>Diagnóstico claro, trabajo con garantía.</h2>
+    <p class="testi-note">Tarjetas de ejemplo — reemplázalas por reseñas reales de tus clientes apenas las tengas.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="quote">"Me dijeron exactamente qué tenía el notebook antes de cobrarme nada. Cero sorpresas."</p>
+        <p class="signature">— Ejemplo, cliente Santiago</p>
+      </div>
+      <div class="testi-card">
+        <p class="quote">"Bajaron la temperatura del equipo casi 30 grados con la limpieza y cambio de pasta."</p>
+        <p class="signature">— Ejemplo, cliente Providencia</p>
+      </div>
+      <div class="testi-card">
+        <p class="quote">"Coordinamos todo por WhatsApp, fueron a domicilio y quedó funcionando el mismo día."</p>
+        <p class="signature">— Ejemplo, cliente Ñuñoa</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARCAS -->
+<section class="section cream">
+  <div class="container center">
+    <p style="font-weight:700;color:var(--navy);margin-bottom:30px;">Reparamos equipos de todas las marcas</p>
+    <div class="brands-row">
+      <span><img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/hp.svg" alt="HP" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="brand-fallback">HP</span></span>
+      <span><img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/lenovo.svg" alt="Lenovo" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="brand-fallback">Lenovo</span></span>
+      <span><img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/dell.svg" alt="Dell" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="brand-fallback">Dell</span></span>
+      <span><img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/asus.svg" alt="Asus" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="brand-fallback">Asus</span></span>
+      <span><img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/apple.svg" alt="Apple" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="brand-fallback">Apple</span></span>
+      <span><img class="brand-logo" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/msi.svg" alt="MSI" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span class="brand-fallback">MSI</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>¿Tu PC está fallando? Cuéntanos.</h2>
+    <div class="lines">
+      <a class="btn btn-white" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20necesito%20ayuda%20con%20mi%20PC">Línea 1 · +56 9 2827 4749</a>
+      <a class="btn btn-white" href="https://wa.me/56953699695?text=Hola%20PingCero%2C%20necesito%20ayuda%20con%20mi%20PC">Línea 2 · +56 9 5369 9695</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="pagos">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo"><span class="dot"></span>Ping Cero</a>
+      <p>Diagnóstico, reparación y mantención de PC y notebooks en Chile. Garantía de 30 días, atención en taller y a domicilio.</p>
+      <p class="line">Línea 1: +56 9 2827 4749</p>
+      <p class="line">Línea 2: +56 9 5369 9695</p>
+      <p class="line" style="color:rgba(255,255,255,.55);font-weight:500;">Atención en taller con coordinación previa · Santiago, Chile</p>
+    </div>
+    <div class="footer-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#quienes-somos">Nosotros</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#preguntas">Preguntas frecuentes</a>
+      <a href="https://pingcero.cl/shop/">Tienda online</a>
+      <a href="https://pingcero.cl/catalogo_ping_cero.pdf">Catálogo en PDF</a>
+    </div>
+  </div>
+
+  <div class="privacy-strip">
+    <div class="container">
+      <div class="privacy-grid">
+        <div class="item">
+          <div class="icon"><svg width="16" height="16" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></svg></div>
+          <span>Tus datos los usamos solo para coordinar tu diagnóstico y reparación. Nunca los vendemos a terceros.</span>
+        </div>
+        <div class="item">
+          <div class="icon"><svg width="16" height="16" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h12"/></svg></div>
+          <span>Emitimos boleta o factura según lo que necesites. Pagos con tarjeta vía Mercado Pago, efectivo o transferencia.</span>
+        </div>
+      </div>
+      <div class="bottom-line">
+        <span>© 2026 PingCero · Chile</span>
+        <a href="#preguntas">Preguntas frecuentes</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

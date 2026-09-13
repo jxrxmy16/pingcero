@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  :root{
+    --coral:#E07B3C; --coral-dark:#C86A2A; --coral-soft:#FEF0E6;
+    --indigo:#1A1E42; --cream:#FAF8F3; --sand:#F0E8DC;
+    --muted:#A0948A; --border:#EDE7DF; --mint:#10B981;
+  }
+  html,body{ width:210mm; height:297mm; overflow:hidden; }
+  body{
+    font-family:'Plus Jakarta Sans',-apple-system,'Segoe UI',Arial,sans-serif;
+    color:var(--indigo); background:#fff;
+    display:flex; flex-direction:column;
+  }
+  .body-pad{ flex:1; padding:14mm 14mm 0; display:flex; flex-direction:column; }
+
+  /* ── Encabezado ── */
+  .head{ display:flex; align-items:center; justify-content:space-between;
+         border-bottom:2px solid var(--coral); padding-bottom:11px; }
+  .brand{ display:flex; align-items:center; gap:11px; }
+  .brand__name{ font-size:23px; letter-spacing:-.03em; line-height:1; }
+  .brand__name .p{ font-weight:800; } .brand__name .c{ font-weight:300; }
+  .dot{ display:inline-block; width:5px; height:5px; border-radius:50%;
+        background:var(--coral); margin:0 4px; vertical-align:middle; position:relative; top:-2px; }
+  .meta{ text-align:right; font-size:10px; color:var(--muted); line-height:1.6; }
+
+  /* ── Título ── */
+  .kicker{ font-size:10px; font-weight:700; letter-spacing:.14em;
+           text-transform:uppercase; color:var(--coral); margin-top:16px; }
+  h1{ font-size:27px; font-weight:800; letter-spacing:-.02em; margin-top:5px; line-height:1.15; }
+  h1 em{ font-style:normal; font-weight:300; }
+  .sub{ font-size:11px; color:#7a6f66; margin-top:6px; line-height:1.5; }
+
+  /* ── Sellos ── */
+  .seals{ display:flex; gap:7px; margin-top:13px; }
+  .seal{ flex:1; display:flex; align-items:center; gap:6px;
+         background:var(--indigo); color:#fff; border-radius:8px; padding:8px 9px;
+         font-size:9.5px; font-weight:600; }
+  .seal svg{ width:13px; height:13px; stroke:var(--coral); fill:none;
+             stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+
+  /* ── Servicios ── */
+  .list{ margin-top:13px; }
+  .row{ display:flex; align-items:center; gap:11px;
+        border:1px solid var(--border); border-radius:9px;
+        padding:8.5px 13px; margin-bottom:6px; }
+  .ic{ width:27px; height:27px; border-radius:7px; background:var(--coral-soft);
+       flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+  .ic svg{ width:15px; height:15px; stroke:var(--coral); fill:none;
+           stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .info{ flex:1; }
+  .name{ font-size:11.5px; font-weight:700; line-height:1.25; }
+  .desc{ font-size:9px; color:var(--muted); margin-top:1.5px; }
+  .tag{ font-size:11.5px; font-weight:800; color:var(--coral-dark);
+        white-space:nowrap; text-align:right; }
+  .tag small{ display:block; font-size:8px; font-weight:600; color:var(--muted); }
+  .tag.free{ color:var(--mint); }
+  .row.sme{ background:var(--indigo); border-color:var(--indigo); }
+  .row.sme .ic{ background:rgba(255,255,255,.12); }
+  .row.sme .ic svg{ stroke:#F5905A; }
+  .row.sme .name{ color:#fff; }
+  .row.sme .desc{ color:rgba(255,255,255,.62); }
+  .row.sme .tag{ color:#F5905A; }
+
+  /* ── Marcas ── */
+  .brands{ margin-top:11px; background:var(--cream); border:1px solid var(--border);
+           border-radius:9px; padding:9px 13px; }
+  .brands__t{ font-size:8.5px; font-weight:700; letter-spacing:.1em;
+              text-transform:uppercase; color:var(--muted); }
+  .brands__l{ font-size:10px; font-weight:600; color:var(--indigo); margin-top:3px; line-height:1.5; }
+
+  /* ── Cómo funciona ── */
+  .steps{ margin-top:11px; }
+  .steps__t{ font-size:8.5px; font-weight:700; letter-spacing:.1em;
+             text-transform:uppercase; color:var(--coral); margin-bottom:7px; }
+  .steps__row{ display:flex; gap:8px; }
+  .step{ flex:1; display:flex; gap:8px; align-items:flex-start;
+         background:var(--sand); border-radius:9px; padding:10px 11px; }
+  .step__n{ width:22px; height:22px; border-radius:50%; flex-shrink:0;
+            background:var(--coral-soft); border:1px solid rgba(224,123,60,.35);
+            color:var(--coral-dark); font-size:9px; font-weight:800;
+            display:flex; align-items:center; justify-content:center; }
+  .step__h{ font-size:10.5px; font-weight:700; line-height:1.25; }
+  .step__d{ font-size:8.5px; color:#7a6f66; margin-top:2px; line-height:1.45; }
+
+  /* ── Nota ── */
+  .note{ margin-top:auto; padding:9px 0 12px; font-size:8.5px;
+         color:var(--muted); line-height:1.55; border-top:1px solid var(--border); }
+
+  /* ── Pie ── */
+  .foot{ background:var(--indigo); color:#fff; padding:11px 14mm;
+         display:flex; align-items:center; justify-content:space-between; }
+  .foot__b{ font-size:13px; font-weight:800; }
+  .foot__b .c{ font-weight:300; }
+  .foot__c{ font-size:11.5px; font-weight:600; }
+  .foot__c span{ color:var(--coral); margin:0 7px; }
+</style>
+</head>
+<body>
+<div class="body-pad">
+
+  <div class="head">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".25"/>
+        <circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/>
+        <circle cx="24" cy="24" r="5" fill="#E07B3C"/>
+      </svg>
+      <span class="brand__name"><span class="p">Ping</span><span class="dot"></span><span class="c">Cero</span></span>
+    </div>
+    <div class="meta">Catálogo de servicios · 2026<br>pingcero.cl · Chile</div>
+  </div>
+
+  <div class="kicker">Servicios y precios</div>
+  <h1>Tarifas <em>claras,</em> sin sorpresas</h1>
+  <div class="sub">El diagnóstico siempre es gratis. Los valores son referenciales y se confirman tras el diagnóstico, según el estado real del equipo.</div>
+
+  <div class="seals">
+    <div class="seal"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Diagnóstico gratis</div>
+    <div class="seal"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Garantía 30 días</div>
+    <div class="seal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Respuesta inmediata</div>
+    <div class="seal"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>Ingenieros del rubro</div>
+  </div>
+
+  <div class="list">
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
+      <div class="info"><div class="name">Diagnóstico de equipo</div><div class="desc">Revisión completa para identificar la falla</div></div>
+      <div class="tag free">GRATIS</div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <div class="info"><div class="name">Formateo + respaldo + instalación de sistema</div><div class="desc">Respaldamos tus datos antes de formatear</div></div>
+      <div class="tag">$25.000 – $40.000</div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="info"><div class="name">Limpieza física + cambio de pasta térmica</div><div class="desc">Baja temperaturas y mejora el rendimiento</div></div>
+      <div class="tag">$20.000 – $35.000</div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+      <div class="info"><div class="name">Mantención general (software + hardware)</div><div class="desc">Optimización completa del equipo</div></div>
+      <div class="tag">$25.000 – $45.000</div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <div class="info"><div class="name">Eliminación de virus y malware</div><div class="desc">Limpieza y protección del sistema</div></div>
+      <div class="tag">$20.000 – $35.000</div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+      <div class="info"><div class="name">Instalación de SSD / ampliación de RAM</div><div class="desc">Mano de obra · repuesto aparte</div></div>
+      <div class="tag">$15.000 – $25.000<small>+ repuesto</small></div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+      <div class="info"><div class="name">Armado de PC a pedido</div><div class="desc">Mano de obra · según componentes</div></div>
+      <div class="tag">$40.000 – $70.000</div>
+    </div>
+    <div class="row">
+      <div class="ic"><svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="info"><div class="name">Configuración de redes y WiFi</div><div class="desc">Hogar u oficina</div></div>
+      <div class="tag">$30.000 – $60.000</div>
+    </div>
+    <div class="row sme">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/></svg></div>
+      <div class="info"><div class="name">Empresas · Mantención de equipos y servidores</div><div class="desc">Planes preventivos y soporte para oficinas · cotización a medida</div></div>
+      <div class="tag">A medida</div>
+    </div>
+  </div>
+
+  <div class="brands">
+    <div class="brands__t">Reparamos equipos de todas las marcas</div>
+    <div class="brands__l">HP · Lenovo · Dell · Asus · Acer · Apple · MSI · Samsung · Toshiba · Intel · AMD · Nvidia · Razer · Logitech · Huawei · Gigabyte</div>
+  </div>
+
+  <div class="steps">
+    <div class="steps__t">Cómo funciona</div>
+    <div class="steps__row">
+      <div class="step"><div class="step__n">01</div><div><div class="step__h">Nos contactas</div><div class="step__d">Escríbenos por WhatsApp y cuéntanos qué le pasa a tu equipo. Te respondemos de inmediato.</div></div></div>
+      <div class="step"><div class="step__n">02</div><div><div class="step__h">Lo revisamos</div><div class="step__d">Hacemos el diagnóstico y te decimos qué tiene y cuánto vale. Sin sorpresas ni cobros ocultos.</div></div></div>
+      <div class="step"><div class="step__n">03</div><div><div class="step__h">Te lo devolvemos andando</div><div class="step__d">Reparamos el equipo y te lo entregamos funcionando, con garantía en el trabajo.</div></div></div>
+    </div>
+  </div>
+
+  <div class="note">
+    Atención a domicilio con recargo por traslado según comuna. Los valores no incluyen el costo de repuestos, que se cotizan por separado. Todos los trabajos incluyen garantía de 30 días: si el problema vuelve por la misma causa que reparamos, lo revisamos sin costo.
+  </div>
+</div>
+
+<div class="foot">
+  <div class="foot__b">Ping<span class="c">Cero</span></div>
+  <div class="foot__c">pingcero.cl <span>·</span> +56 9 2827 4749 <span>·</span> +56 9 5369 9695</div>
+</div>
+</body>
+</html>

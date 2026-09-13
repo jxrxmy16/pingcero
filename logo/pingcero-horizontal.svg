@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198 48" width="198" height="48" fill="none" role="img" aria-label="PingCero">
+  <title>PingCero</title>
+
+  <!-- ── Isotipo: radar ── -->
+  <circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity="0.25"/>
+  <circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/>
+  <circle cx="24" cy="24" r="5" fill="#E07B3C"/>
+
+  <!-- ── Logotipo: Ping · Cero ──
+       dx="15" abre el hueco donde va el punto coral.
+       Para un logo definitivo, convierte el texto a trazados
+       (Illustrator/Inkscape → "Crear contorno"). -->
+  <text x="58" y="24" dominant-baseline="central"
+        font-family="'Plus Jakarta Sans','Inter','Segoe UI',Arial,sans-serif"
+        font-size="27" letter-spacing="-0.8" fill="#1A1E42">
+    <tspan font-weight="800">Ping</tspan><tspan font-weight="300" dx="15">Cero</tspan>
+  </text>
+
+  <!-- Punto coral, centrado en el hueco -->
+  <circle cx="120.5" cy="24" r="3.2" fill="#E07B3C"/>
+</svg>

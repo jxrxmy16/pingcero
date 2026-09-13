@@ -1,0 +1,201 @@
+<meta charset="utf-8">
+<title>Ping Cero · Servicios y precios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="pc.css">
+<style>
+  .head{padding:56px 0 36px}
+  .head h1{font-size:clamp(40px,5.6vw,66px);margin:16px 0 18px}
+  .builder{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;padding-bottom:88px}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+  .list{display:grid;gap:10px}
+  .svc{display:grid;grid-template-columns:22px 1fr auto;gap:18px;align-items:center;padding:20px 22px;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;transition:border-color .15s,background .15s}
+  .svc:hover{border-color:var(--ink-2)}
+  .svc:has(input:checked){border-color:var(--coral);background:var(--coral-soft)}
+  .svc input{width:20px;height:20px;accent-color:var(--coral);margin:0}
+  .svc .nm{display:block;font-size:16px;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+  .svc p{font-size:14px;color:var(--muted)}
+  .svc .price{text-align:right}
+  .svc .price small{display:block;font-size:12px;color:var(--muted)}
+  .svc .free{color:var(--ok);font-weight:600}
+  .biz{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:18px;padding:20px 22px;border-radius:12px;border:1px dashed var(--line)}
+  .biz a{font-weight:700;color:var(--coral-ink);text-decoration:none}
+
+  .sum{position:sticky;top:96px;background:var(--band);color:var(--band-ink);border-radius:18px;padding:28px;display:grid;gap:18px}
+  .sum h2{font-size:20px}
+  .sum ul{list-style:none;margin:0;padding:0}
+  .sum li{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:10px 0;border-bottom:1px solid var(--band-line)}
+  .sum li .price{font-size:13px;color:var(--band-muted)}
+  .sum .empty{color:var(--band-muted);font-size:14px}
+  .total .k{font:600 11px/1 var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--band-muted);margin-bottom:8px}
+  .total .v{font:500 clamp(24px,2.6vw,30px)/1.15 var(--mono);font-variant-numeric:tabular-nums;color:var(--coral)}
+  .total .x{font-size:13px;color:var(--band-muted);margin-top:4px}
+  .toggle{display:flex;gap:10px;align-items:flex-start;font-size:14px;cursor:pointer}
+  .toggle input{width:18px;height:18px;accent-color:var(--coral);margin:2px 0 0}
+  .toggle small{display:block;color:var(--band-muted)}
+  .sum .btn{width:100%}
+  .sum .fine{font-size:12px;color:var(--band-muted)}
+  @media (max-width:980px){.builder{grid-template-columns:1fr}.sum{position:static}}
+
+  .terms{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .terms h3{font-size:18px;margin:14px 0 8px}
+  .terms p{color:var(--ink-2);font-size:15px}
+  .terms svg{width:28px;height:28px;color:var(--coral)}
+  @media (max-width:860px){.terms{grid-template-columns:1fr}}
+
+  .faq{max-width:780px;margin-top:64px}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:20px 0;font-weight:700;font-size:17px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font:500 22px/1 var(--mono);color:var(--coral)}
+  .faq details[open] summary::after{content:"–"}
+  .faq details p{padding:0 0 20px;color:var(--ink-2);max-width:65ch}
+</style>
+
+<div class="proto"><div class="wrap"><span><span class="flag">Maqueta</span>&nbsp; Propuesta de upgrade · <span class="mono">pingcero.cl/servicios</span></span><a href="index.html">← Todas las páginas</a></div></div>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="inicio.html" aria-label="Ping Cero, inicio"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="inicio.html">Inicio</a></li>
+    <li><a href="servicios.html" aria-current="page">Servicios</a></li>
+    <li><a href="empresas.html">Empresas</a></li>
+    <li><a href="seguimiento.html">Seguimiento</a></li>
+    <li><a href="holaping.html">HolaPing</a></li>
+  </ul></nav>
+  <a class="btn btn-primary btn-sm" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20necesito%20ayuda%20con%20mi%20PC" target="_blank" rel="noopener">WhatsApp</a>
+</div></header>
+
+<main>
+<section class="head"><div class="wrap">
+  <span class="eyebrow">Servicios y precios 2026</span>
+  <h1 class="display">Tarifas claras, <b>sin sorpresas</b>.</h1>
+  <p class="lede">Marca lo que necesitas y te mostramos el rango de precio al tiro. El diagnóstico siempre es gratis y confirma el valor final según el estado real del equipo.</p>
+</div></section>
+
+<section class="wrap builder">
+  <div>
+    <div class="filters" role="group" aria-label="Filtrar servicios">
+      <button class="chip" type="button" data-f="todos" aria-pressed="true">Todos</button>
+      <button class="chip" type="button" data-f="rend" aria-pressed="false">Rendimiento</button>
+      <button class="chip" type="button" data-f="sistema" aria-pressed="false">Sistema y datos</button>
+      <button class="chip" type="button" data-f="redes" aria-pressed="false">Redes</button>
+      <button class="chip" type="button" data-f="armado" aria-pressed="false">Armado</button>
+    </div>
+    <div class="list" id="list"></div>
+    <div class="biz">
+      <div><strong>¿Es para tu empresa?</strong><br><span style="color:var(--muted);font-size:14px">Mantención de equipos y servidores con planes preventivos · cotización a medida</span></div>
+      <a href="empresas.html">Ver planes para empresas →</a>
+    </div>
+  </div>
+
+  <aside class="sum" aria-labelledby="sum-t">
+    <h2 id="sum-t">Tu presupuesto estimado</h2>
+    <ul id="picked"></ul>
+    <div class="total" aria-live="polite">
+      <div class="k">Rango estimado</div>
+      <div class="v" id="total">$35.000 – $60.000</div>
+      <div class="x" id="extra">+ costo del repuesto</div>
+    </div>
+    <label class="toggle"><input type="checkbox" id="home"><span>Atención a domicilio<small>Recargo por traslado según comuna</small></span></label>
+    <a class="btn btn-primary" id="wa" href="#" target="_blank" rel="noopener">Pedir diagnóstico con esto</a>
+    <p class="fine">Valores referenciales en pesos chilenos. Todos los trabajos incluyen garantía de 30 días.</p>
+  </aside>
+</section>
+
+<section class="sec sunk"><div class="wrap">
+  <div class="terms">
+    <div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+      <h3>Garantía de 30 días</h3>
+      <p>Si el problema vuelve por la misma causa que reparamos, lo revisamos sin costo.</p>
+    </div>
+    <div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg>
+      <h3>El precio se confirma antes</h3>
+      <p>Los rangos dependen del estado del equipo. Después del diagnóstico te damos un valor cerrado y no hacemos nada sin tu aprobación.</p>
+    </div>
+    <div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>
+      <h3>Pagos y documentos</h3>
+      <p>Efectivo, transferencia o tarjeta. Emitimos boleta o factura. Los repuestos se cotizan aparte.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <h2 class="display" style="font-size:clamp(28px,3.4vw,38px);margin-bottom:18px">Dudas sobre <b>precios</b></h2>
+    <details open><summary>¿El diagnóstico tiene costo?</summary><p>No. Antes de hacer cualquier trabajo te explicamos qué tiene el equipo y cuánto vale la reparación, para que decidas con tranquilidad.</p></details>
+    <details><summary>¿Cuánto demora la reparación?</summary><p>Depende del problema y de los repuestos. Cuando recibimos tu equipo te damos un plazo estimado para que puedas organizarte.</p></details>
+    <details><summary>¿Por qué el SSD y la RAM dicen “+ repuesto”?</summary><p>El valor es la mano de obra. La pieza depende de la capacidad y de tu equipo; te cotizamos opciones antes de comprar nada.</p></details>
+    <details><summary>¿Tienen tienda física?</summary><p>No atendemos público en local. Recibimos en taller con coordinación previa por WhatsApp, en el horario que te acomode.</p></details>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <div>
+    <a class="logo" href="inicio.html"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+    <p>Diagnóstico, reparación y mantención de PC y notebooks. Asociación de ingenieros · Santiago, Chile.</p>
+  </div>
+  <div><h4>Sitio</h4><ul><li><a href="servicios.html">Servicios y precios</a></li><li><a href="empresas.html">Empresas</a></li><li><a href="seguimiento.html">Seguimiento de orden</a></li><li><a href="holaping.html">HolaPing</a></li></ul></div>
+  <div><h4>Contacto</h4><ul><li>Línea 1 · <span class="mono">+56 9 2827 4749</span></li><li>Línea 2 · <span class="mono">+56 9 5369 9695</span></li><li><a href="https://pingcero.cl/catalogo_ping_cero.pdf">Catálogo en PDF</a></li></ul></div>
+  <div class="legal"><span>© 2026 PingCero · Chile</span><span>Tus datos se usan solo para coordinar tu diagnóstico. Nunca los vendemos.</span></div>
+</div></footer>
+
+<script>
+  // Una sola fuente de precios: la misma del catálogo PDF 2026
+  const SV = [
+    { id:'diag',   cat:'sistema', name:'Diagnóstico de equipo', desc:'Revisión completa para identificar la falla', min:0, max:0 },
+    { id:'form',   cat:'sistema', name:'Formateo + respaldo + instalación de sistema', desc:'Respaldamos tus datos antes de formatear', min:25000, max:40000 },
+    { id:'limp',   cat:'rend',    name:'Limpieza física + cambio de pasta térmica', desc:'Baja temperaturas y mejora el rendimiento', min:20000, max:35000 },
+    { id:'mant',   cat:'rend',    name:'Mantención general (software + hardware)', desc:'Optimización completa del equipo', min:25000, max:45000 },
+    { id:'virus',  cat:'sistema', name:'Eliminación de virus y malware', desc:'Limpieza y protección del sistema', min:20000, max:35000 },
+    { id:'ssd',    cat:'rend',    name:'Instalación de SSD / ampliación de RAM', desc:'Mano de obra · repuesto aparte', min:15000, max:25000, part:true },
+    { id:'armado', cat:'armado',  name:'Armado de PC a pedido', desc:'Mano de obra · según componentes', min:40000, max:70000, part:true },
+    { id:'red',    cat:'redes',   name:'Configuración de redes y WiFi', desc:'Hogar u oficina', min:30000, max:60000 }
+  ];
+  const clp = n => '$' + n.toLocaleString('es-CL');
+  const range = s => s.max === 0 ? 'GRATIS' : `${clp(s.min)} – ${clp(s.max)}`;
+  const picked = new Set(['limp', 'ssd']);
+  let filter = 'todos';
+  const $ = id => document.getElementById(id);
+
+  function renderList(){
+    $('list').innerHTML = SV.filter(s => filter === 'todos' || s.cat === filter).map(s => `
+      <label class="svc">
+        <input type="checkbox" value="${s.id}" ${picked.has(s.id) ? 'checked' : ''}>
+        <div><strong class="nm">${s.name}</strong><p>${s.desc}</p></div>
+        <span class="price">${s.max === 0 ? '<span class="free">GRATIS</span>' : range(s)}${s.part ? '<small>+ repuesto</small>' : ''}</span>
+      </label>`).join('');
+  }
+  function renderSum(){
+    const sel = SV.filter(s => picked.has(s.id));
+    const home = $('home').checked;
+    $('picked').innerHTML = sel.length
+      ? sel.map(s => `<li><span>${s.name}</span><span class="price">${range(s)}</span></li>`).join('')
+        + (home ? '<li><span>Traslado a domicilio</span><span class="price">según comuna</span></li>' : '')
+      : '<li class="empty">Marca uno o más servicios de la lista.</li>';
+    const min = sel.reduce((a, s) => a + s.min, 0), max = sel.reduce((a, s) => a + s.max, 0);
+    $('total').textContent = !sel.length ? '—' : max === 0 ? 'GRATIS' : (min === max ? clp(min) : `${clp(min)} – ${clp(max)}`);
+    const extras = [];
+    if (sel.some(s => s.part)) extras.push('costo del repuesto');
+    if (home) extras.push('traslado');
+    $('extra').textContent = extras.length ? '+ ' + extras.join(' + ') : 'Diagnóstico incluido sin costo';
+    const lines = sel.map(s => `- ${s.name} (${range(s)})`).join('\n');
+    const msg = sel.length
+      ? `Hola PingCero, quiero cotizar:\n${lines}\nEstimado: ${$('total').textContent}${home ? '\nNecesito atención a domicilio.' : ''}`
+      : 'Hola PingCero, necesito ayuda con mi PC';
+    $('wa').href = 'https://wa.me/56928274749?text=' + encodeURIComponent(msg);
+  }
+  $('list').addEventListener('change', e => {
+    if (e.target.matches('input')) { e.target.checked ? picked.add(e.target.value) : picked.delete(e.target.value); renderSum(); }
+  });
+  $('home').addEventListener('change', renderSum);
+  document.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => {
+    filter = b.dataset.f;
+    document.querySelectorAll('[data-f]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    renderList();
+  }));
+  renderList(); renderSum();
+</script>

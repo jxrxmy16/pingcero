@@ -1,0 +1,215 @@
+<meta charset="utf-8">
+<title>Ping Cero · Seguimiento de orden</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="pc.css">
+<style>
+  .lookup{padding:56px 0 40px}
+  .lookup .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+  .lookup h1{font-size:clamp(40px,5.4vw,62px);margin:16px 0 16px}
+  .find{display:grid;grid-template-columns:1fr 150px auto;gap:10px;align-items:end;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px}
+  .field input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:500 15px var(--mono);letter-spacing:.02em}
+  .field input:focus-visible{outline:2px solid var(--focus);outline-offset:1px}
+  .find .hint{grid-column:1/-1;font-size:13px;color:var(--muted)}
+  .find .err{grid-column:1/-1;font-size:14px;color:var(--bad)}
+  @media (max-width:900px){.lookup .wrap{grid-template-columns:1fr}}
+  @media (max-width:560px){.find{grid-template-columns:1fr}}
+
+  .order-head{display:flex;justify-content:space-between;gap:20px 40px;flex-wrap:wrap;align-items:center;padding:28px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .order-head .code{font:600 28px/1 var(--mono);letter-spacing:-.01em}
+  .order-head dl{display:flex;gap:10px 36px;flex-wrap:wrap;margin:0}
+  .order-head dt{font:600 11px/1 var(--font);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .order-head dd{margin:0;font-weight:600}
+  .status{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:999px;background:var(--coral-soft);color:var(--coral-ink);font-weight:700;font-size:14px}
+  .status i{width:8px;height:8px;border-radius:50%;background:var(--coral);animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.3}}
+
+  .order{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;padding:44px 0 88px}
+  @media (max-width:900px){.order{grid-template-columns:1fr}}
+  .order h2{font-size:22px;margin-bottom:22px}
+  .tl{list-style:none;margin:0;padding:0}
+  .tl li{display:grid;grid-template-columns:28px 1fr;gap:16px;position:relative;padding-bottom:26px}
+  .tl li::before{content:"";position:absolute;left:13px;top:30px;bottom:2px;width:2px;background:var(--line)}
+  .tl li:last-child::before{display:none}
+  .tl li.done::before{background:var(--coral)}
+  .tl .dot{width:28px;height:28px;border-radius:50%;border:2px solid var(--line);background:var(--bg);display:grid;place-items:center}
+  .tl .done .dot{background:var(--coral);border-color:var(--coral);color:#1A1E42}
+  .tl .dot svg{width:14px;height:14px}
+  .tl .now .dot{border-color:var(--coral)}
+  .tl .now .dot::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--coral);animation:pulse 1.6s ease-in-out infinite}
+  .tl h3{font-size:16px;letter-spacing:-.01em;line-height:1.3;padding-top:3px}
+  .tl .next h3{color:var(--muted);font-weight:600}
+  .tl time{display:block;font:400 13px var(--mono);color:var(--muted);margin:2px 0 4px}
+  .tl p{font-size:14px;color:var(--ink-2)}
+
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:30px;display:grid;gap:30px}
+  .panel h3{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+
+  .gauge{padding:34px 14px 0}
+  .track{position:relative;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--ok) 0%,var(--ok) 50%,var(--warn) 72%,var(--bad) 86%,var(--bad) 100%);opacity:.85}
+  .pin{position:absolute;top:-34px;transform:translateX(-50%);display:grid;justify-items:center;gap:3px}
+  .pin b{font:600 13px/1 var(--mono);white-space:nowrap;padding:5px 7px;border-radius:6px;background:var(--ink);color:var(--bg)}
+  .pin.before b{background:var(--surface);color:var(--bad);box-shadow:inset 0 0 0 1.5px var(--bad)}
+  .pin::after{content:"";width:2px;height:16px;background:var(--ink)}
+  .pin.before::after{background:var(--bad)}
+  .ticks{position:relative;height:22px;margin-top:8px;font:400 12px var(--mono);color:var(--muted)}
+  .ticks span{position:absolute;transform:translateX(-50%)}
+  .gauge-note{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:6px}
+
+  .meas{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;min-width:480px}
+  th{text-align:left;font:600 12px var(--font);color:var(--muted);padding:0 10px 10px 0;border-bottom:1px solid var(--line)}
+  td{padding:13px 10px 13px 0;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
+  td.m{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  tr:last-child td{border-bottom:0}
+  .pill{display:inline-block;font:600 12px/1 var(--font);padding:6px 9px;border-radius:999px;white-space:nowrap}
+  .pill.ok{background:color-mix(in srgb,var(--ok) 15%,transparent);color:var(--ok)}
+  .pill.warn{background:color-mix(in srgb,var(--warn) 16%,transparent);color:var(--warn)}
+  .pill.neutral{background:var(--sunk);color:var(--ink-2)}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  @media (max-width:560px){.two{grid-template-columns:1fr}}
+  .bill div{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .bill div:last-child{border:0;font-weight:700;font-size:16px}
+  .bill .price{font-size:14px}
+  .warranty p{font-size:14px;color:var(--ink-2)}
+  .panel-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px}
+  .panel-foot span{font-size:13px;color:var(--muted)}
+</style>
+
+<div class="proto"><div class="wrap"><span><span class="flag">Maqueta</span>&nbsp; Propuesta de upgrade · <span class="mono">pingcero.cl/seguimiento</span> · orden de ejemplo</span><a href="index.html">← Todas las páginas</a></div></div>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="inicio.html" aria-label="Ping Cero, inicio"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="inicio.html">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="empresas.html">Empresas</a></li>
+    <li><a href="seguimiento.html" aria-current="page">Seguimiento</a></li>
+    <li><a href="holaping.html">HolaPing</a></li>
+  </ul></nav>
+  <a class="btn btn-primary btn-sm" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20tengo%20una%20consulta%20sobre%20mi%20orden" target="_blank" rel="noopener">WhatsApp</a>
+</div></header>
+
+<main>
+<section class="lookup"><div class="wrap">
+  <div>
+    <span class="eyebrow">Seguimiento de reparación</span>
+    <h1 class="display">¿Cómo va <b>tu equipo</b>?</h1>
+    <p class="lede">Revisa en qué etapa está, qué encontramos en el diagnóstico y las mediciones antes y después. Sin tener que preguntar por WhatsApp.</p>
+  </div>
+  <form class="find" id="find" novalidate>
+    <div class="field"><label for="code">Código de orden</label><input id="code" value="PC-0412" autocomplete="off" spellcheck="false"></div>
+    <div class="field"><label for="ph">Últimos 4 del teléfono</label><input id="ph" value="1234" inputmode="numeric" maxlength="4"></div>
+    <button class="btn btn-primary" type="submit">Buscar</button>
+    <p class="hint">El código viene en tu comprobante de recepción. Para probar: <span class="mono">PC-0412</span> · <span class="mono">1234</span></p>
+    <p class="err" id="err" hidden></p>
+  </form>
+</div></section>
+
+<div id="order">
+<div class="wrap">
+  <div class="order-head">
+    <div>
+      <div class="code">PC-0412</div>
+      <span style="font-size:14px;color:var(--muted)">Notebook Lenovo IdeaPad 3 15″ · “Se apaga solo con varias pestañas o jugando”</span>
+    </div>
+    <dl>
+      <div><dt>Recibido</dt><dd class="mono">09 sep 2026</dd></div>
+      <div><dt>Técnico</dt><dd>Jeremy N.</dd></div>
+    </dl>
+    <span class="status"><i></i>Pruebas de estrés</span>
+  </div>
+
+  <div class="order">
+    <section aria-labelledby="tl-t">
+      <h2 id="tl-t">Etapas</h2>
+      <ol class="tl">
+        <li class="done"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>Recibido en taller</h3><time>09 sep · 11:20</time><p>Equipo con cargador. Sin daños visibles en carcasa.</p></div></li>
+        <li class="done"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>Diagnóstico listo</h3><time>09 sep · 17:05</time><p>CPU a 94 °C en carga. Ventilador obstruido con polvo y pasta térmica seca.</p></div></li>
+        <li class="done"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>Presupuesto aprobado</h3><time>10 sep · 09:12</time><p>Limpieza física + cambio de pasta térmica · <span class="mono">$28.000</span></p></div></li>
+        <li class="done"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><div><h3>Reparación</h3><time>10 sep · 15:40</time><p>Desarme, limpieza de ventilador y disipador, pasta térmica nueva.</p></div></li>
+        <li class="now" aria-current="step"><span class="dot"></span><div><h3>Pruebas de estrés</h3><time>en curso</time><p>30 minutos a carga completa midiendo temperatura.</p></div></li>
+        <li class="next"><span class="dot"></span><div><h3>Listo para retiro</h3><time>—</time><p>Te avisamos por WhatsApp para coordinar.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="panel" aria-labelledby="inf-t">
+      <div>
+        <h2 id="inf-t" style="margin-bottom:6px">Informe técnico</h2>
+        <p style="font-size:14px;color:var(--muted)">Lo que medimos al recibir el equipo y después de repararlo.</p>
+      </div>
+
+      <div>
+        <h3>Temperatura del procesador en carga</h3>
+        <div class="gauge" role="img" aria-label="Temperatura en carga: 94 grados al recibir, 66 grados tras la reparación, en una escala de 30 a 100 grados">
+          <div class="track">
+            <span class="pin" style="left:51.43%"><b>66 °C</b></span>
+            <span class="pin before" style="left:91.43%"><b>94 °C</b></span>
+          </div>
+          <div class="ticks" aria-hidden="true">
+            <span style="left:0%">30</span><span style="left:28.57%">50</span><span style="left:57.14%">70</span><span style="left:85.71%">90</span>
+          </div>
+          <div class="gauge-note"><span>Escala °C · rojo: el procesador baja su velocidad o se apaga</span><span class="mono" style="color:var(--ok)">−28 °C</span></div>
+        </div>
+      </div>
+
+      <div class="meas">
+        <table>
+          <thead><tr><th>Medición</th><th>Al recibir</th><th>Tras reparar</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>Temperatura CPU en carga</td><td class="m">94 °C</td><td class="m">66 °C</td><td><span class="pill ok">Resuelto</span></td></tr>
+            <tr><td>Ventilador</td><td>Obstruido</td><td>Limpio</td><td><span class="pill ok">Resuelto</span></td></tr>
+            <tr><td>Salud del disco (SMART)</td><td class="m">96 %</td><td class="m">96 %</td><td><span class="pill neutral">Sin cambios</span></td></tr>
+            <tr><td>Desgaste de batería</td><td class="m">31 %</td><td class="m">31 %</td><td><span class="pill warn">No incluido</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="two">
+        <div class="bill">
+          <h3>Presupuesto</h3>
+          <div><span>Limpieza + pasta térmica</span><span class="price">$28.000</span></div>
+          <div><span>Repuestos</span><span class="price">$0</span></div>
+          <div><span>Total</span><span class="price">$28.000</span></div>
+        </div>
+        <div class="warranty">
+          <h3>Garantía</h3>
+          <p><strong>30 días desde el retiro.</strong> Si el equipo vuelve a calentarse por la misma causa, lo revisamos sin costo.</p>
+        </div>
+      </div>
+
+      <div class="panel-foot">
+        <span>Actualizado hoy · 12:48</span>
+        <a class="btn btn-ghost btn-sm" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20tengo%20una%20consulta%20sobre%20la%20orden%20PC-0412" target="_blank" rel="noopener">Preguntar por esta orden</a>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <div>
+    <a class="logo" href="inicio.html"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+    <p>Diagnóstico, reparación y mantención de PC y notebooks. Asociación de ingenieros · Santiago, Chile.</p>
+  </div>
+  <div><h4>Sitio</h4><ul><li><a href="servicios.html">Servicios y precios</a></li><li><a href="empresas.html">Empresas</a></li><li><a href="seguimiento.html">Seguimiento de orden</a></li><li><a href="holaping.html">HolaPing</a></li></ul></div>
+  <div><h4>Contacto</h4><ul><li>Línea 1 · <span class="mono">+56 9 2827 4749</span></li><li>Línea 2 · <span class="mono">+56 9 5369 9695</span></li><li><a href="https://pingcero.cl/catalogo_ping_cero.pdf">Catálogo en PDF</a></li></ul></div>
+  <div class="legal"><span>© 2026 PingCero · Chile</span><span>Tus datos se usan solo para coordinar tu diagnóstico. Nunca los vendemos.</span></div>
+</div></footer>
+
+<script>
+  document.getElementById('find').addEventListener('submit', e => {
+    e.preventDefault();
+    const code = document.getElementById('code').value.trim().toUpperCase().replace(/\s+/g, '');
+    const ph = document.getElementById('ph').value.trim();
+    const err = document.getElementById('err');
+    const ok = code === 'PC-0412' && ph === '1234';
+    document.getElementById('order').hidden = !ok;
+    err.hidden = ok;
+    if (!ok) err.textContent = `No encontramos la orden ${code || '(sin código)'} con esos dígitos. Revisa el código en tu comprobante de recepción o escríbenos por WhatsApp.`;
+  });
+</script>
