@@ -1,5 +1,13 @@
+<!doctype html>
+<html lang="es-CL">
 <meta charset="utf-8">
-<title>Ping Cero · Inicio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ping Cero · Soporte técnico de PC y WiFi en Lampa, Batuco, Colina y Chicureo</title>
+<meta name="description" content="Soporte técnico de PC, notebooks y WiFi a domicilio en Batuco, Lampa, Colina y Chicureo. Ingenieros, diagnóstico gratis, precios claros y garantía de 30 días.">
+<meta property="og:title" content="Ping Cero · Tu PC de vuelta en cero problemas">
+<meta property="og:description" content="Ingenieros en Batuco, Lampa, Colina y Chicureo. Diagnóstico gratis, precio claro antes de empezar y garantía de 30 días.">
+<meta property="og:locale" content="es_CL">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Ping Cero", "description": "Soporte técnico de PC, notebooks y WiFi a domicilio en Batuco, Lampa, Colina y Chicureo. Ingenieros, diagnóstico gratis, precios claros y garantía de 30 días.", "url": "https://pingcero.cl", "telephone": ["+56928274749", "+56953699695"], "priceRange": "$15.000 – $70.000 CLP", "paymentAccepted": "Efectivo, transferencia, tarjeta", "address": {"@type": "PostalAddress", "addressLocality": "Lampa", "addressRegion": "Región Metropolitana", "addressCountry": "CL"}, "areaServed": [{"@type": "Place", "name": "Batuco, Región Metropolitana, Chile"}, {"@type": "Place", "name": "Lampa, Región Metropolitana, Chile"}, {"@type": "Place", "name": "Colina, Región Metropolitana, Chile"}, {"@type": "Place", "name": "Chicureo, Región Metropolitana, Chile"}], "founder": {"@type": "Person", "name": "Jeremy Navarro", "jobTitle": "Ingeniero en Telecomunicaciones, Conectividad y Redes"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
@@ -76,6 +84,24 @@
   .brands span{padding-right:56px;font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--muted)}
   @keyframes marq{to{transform:translateX(-50%)}}
 
+  .team{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+  .people{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .person{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;gap:12px;align-content:start}
+  .person .ph{aspect-ratio:4/3;border-radius:10px;border:1.5px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:13px;text-align:center;padding:12px}
+  .person h3{font-size:19px}
+  .person .role{font-size:14px;color:var(--coral-ink);font-weight:600}
+  .person p{font-size:14px;color:var(--ink-2)}
+  .person ul{margin:0;padding:0;list-style:none;display:flex;gap:6px;flex-wrap:wrap}
+  .person li{font:500 12px/1 var(--mono);padding:6px 8px;border-radius:6px;background:var(--sunk)}
+  @media (max-width:860px){.team{grid-template-columns:1fr;gap:28px}}
+  @media (max-width:560px){.people{grid-template-columns:1fr}}
+  .zgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .zc{display:grid;gap:6px;padding:22px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface);text-decoration:none}
+  .zc:hover{border-color:var(--coral)}
+  .zc b{font-size:20px;letter-spacing:-.02em}
+  .zc span{font-size:14px;color:var(--muted)}
+  .zc i{font-style:normal;font-weight:700;color:var(--coral-ink);font-size:14px;margin-top:6px}
+  @media (max-width:860px){.zgrid{grid-template-columns:1fr 1fr}}
   .cta .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
   .cta h2{font-size:clamp(36px,5vw,58px)}
   .lines{display:flex;gap:12px;flex-wrap:wrap}
@@ -101,7 +127,7 @@
 <main>
 <section class="hero"><div class="wrap">
   <div>
-    <span class="eyebrow">Asociación de ingenieros · Santiago</span>
+    <span class="eyebrow">Ingenieros en Batuco, Lampa, Colina y Chicureo</span>
     <h1 class="display">Tu PC de vuelta en <em>cero</em> problemas.</h1>
     <p class="lede">Diagnóstico, reparación y mantención de computadores y notebooks. Te decimos qué tiene y cuánto vale antes de tocar nada.</p>
     <div class="actions">
@@ -204,6 +230,43 @@
   </div>
 </div></section>
 
+<section class="sec"><div class="wrap team">
+  <div class="sec-head" style="margin:0">
+    <span class="eyebrow">Quiénes somos</span>
+    <h2 class="display">Ingenieros, <b>no adivinos</b>.</h2>
+    <p class="lede" style="font-size:16px">Trabajamos en redes y monitoreo de infraestructura para empresas. Lo mismo que cuidamos en un data center, lo aplicamos a tu PC y a tu WiFi: primero se mide, después se repara.</p>
+  </div>
+  <div class="people">
+    <article class="person">
+      <div class="ph"><span class="flag">Pendiente</span>Foto real trabajando</div>
+      <h3>Jeremy Navarro</h3>
+      <span class="role">Ingeniero en Telecomunicaciones, Conectividad y Redes</span>
+      <p>Analista de operaciones NOC. Monitoreo de infraestructura, redes y data center. Vive en la zona Lampa–Batuco.</p>
+      <ul><li>INACAP</li><li>Fortinet NSE 1–2</li><li>Curso CCNA · Cisco</li></ul>
+    </article>
+    <article class="person">
+      <div class="ph"><span class="flag">Pendiente</span>Foto del segundo ingeniero</div>
+      <h3>Segundo ingeniero</h3>
+      <span class="role">Completar: título y especialidad</span>
+      <p>Completar con nombre, experiencia y comuna. Una cara y un nombre real valen más que cualquier sello.</p>
+    </article>
+  </div>
+</div></section>
+
+<section class="sec sunk"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Dónde atendemos</span>
+    <h2 class="display">Zona norte de Santiago, <b>a domicilio o en taller</b>.</h2>
+    <p class="lede" style="font-size:16px">El recargo por traslado depende de la comuna y te lo decimos antes de ir.</p>
+  </div>
+  <div class="zgrid">
+    <a class="zc" href="zona-batuco.html"><b>Batuco</b><span>Casas y parcelas · WiFi de largo alcance</span><i>Ver Batuco →</i></a>
+    <a class="zc" href="zona-lampa.html"><b>Lampa</b><span>Hogares, estudiantes y negocios</span><i>Ver Lampa →</i></a>
+    <a class="zc" href="zona-colina.html"><b>Colina</b><span>Reparación de PC y notebooks</span><i>Ver Colina →</i></a>
+    <a class="zc" href="zona-chicureo.html"><b>Chicureo</b><span>WiFi para casas grandes</span><i>Ver Chicureo →</i></a>
+  </div>
+</div></section>
+
 <div class="brands" aria-label="Marcas que reparamos">
   <div class="brands-track">
     <span>HP</span><span>Lenovo</span><span>Dell</span><span>Asus</span><span>Acer</span><span>Apple</span><span>MSI</span><span>Samsung</span><span>Toshiba</span><span>Intel</span><span>AMD</span><span>Nvidia</span><span>Razer</span><span>Logitech</span><span>Huawei</span><span>Gigabyte</span>
@@ -226,11 +289,11 @@
 <footer class="foot"><div class="wrap">
   <div>
     <a class="logo" href="inicio.html"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
-    <p>Diagnóstico, reparación y mantención de PC y notebooks. Asociación de ingenieros · Santiago, Chile.</p>
+    <p>Diagnóstico, reparación y mantención de PC, notebooks y redes. Ingenieros en Batuco, Lampa, Colina y Chicureo.</p>
   </div>
   <div><h4>Sitio</h4><ul><li><a href="servicios.html">Servicios y precios</a></li><li><a href="empresas.html">Empresas</a></li><li><a href="seguimiento.html">Seguimiento de orden</a></li><li><a href="holaping.html">HolaPing</a></li></ul></div>
   <div><h4>Contacto</h4><ul><li>Línea 1 · <span class="mono">+56 9 2827 4749</span></li><li>Línea 2 · <span class="mono">+56 9 5369 9695</span></li><li><a href="https://pingcero.cl/catalogo_ping_cero.pdf">Catálogo en PDF</a></li></ul></div>
-  <div class="legal"><span>© 2026 PingCero · Chile</span><span>Tus datos se usan solo para coordinar tu diagnóstico. Nunca los vendemos.</span></div>
+  <div class="legal"><span>© 2026 PingCero · Zona norte de Santiago · Tus datos se usan solo para coordinar tu diagnóstico.</span><span>Atendemos en <a href="zona-batuco.html">Batuco</a> · <a href="zona-lampa.html">Lampa</a> · <a href="zona-colina.html">Colina</a> · <a href="zona-chicureo.html">Chicureo</a></span></div>
 </div></footer>
 
 <script>

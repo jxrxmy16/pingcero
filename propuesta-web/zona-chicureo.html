@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es-CL">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WiFi y soporte técnico a domicilio en Chicureo · Ping Cero</title>
+<meta name="description" content="WiFi para casas grandes y soporte técnico de PC a domicilio en Chicureo. Medición de señal, mesh, cableado y reparación de notebooks. Ingenieros en redes.">
+<meta property="og:title" content="WiFi y soporte técnico a domicilio en Chicureo · Ping Cero">
+<meta property="og:description" content="WiFi para casas grandes y soporte técnico de PC a domicilio en Chicureo. Medición de señal, mesh, cableado y reparación de notebooks. Ingenieros en redes.">
+<meta property="og:locale" content="es_CL">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='13' fill='none' stroke='%23E07B3C' stroke-width='3'/%3E%3Ccircle cx='24' cy='24' r='5' fill='%23E07B3C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="pc.css">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Ping Cero", "description": "WiFi para casas grandes y soporte técnico de PC a domicilio en Chicureo. Medición de señal, mesh, cableado y reparación de notebooks. Ingenieros en redes.", "url": "https://pingcero.cl/chicureo", "telephone": ["+56928274749", "+56953699695"], "priceRange": "$15.000 – $70.000 CLP", "paymentAccepted": "Efectivo, transferencia, tarjeta", "areaServed": {"@type": "Place", "name": "Chicureo, Región Metropolitana, Chile"}, "makesOffer": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Configuración de redes y WiFi"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Armado de PC a pedido"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Limpieza física + cambio de pasta térmica"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Mantención general"}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Cuánto cuesta mejorar el WiFi de una casa en Chicureo?", "acceptedAnswer": {"@type": "Answer", "text": "La configuración va de $30.000 a $60.000 más los equipos si se necesitan (mesh o puntos de acceso). Primero medimos y te decimos si basta con reubicar o reconfigurar lo que ya tienes."}}, {"@type": "Question", "name": "¿Trabajan en condominios?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Coordinamos el acceso contigo y atendemos a domicilio con un recargo por traslado que te informamos antes."}}, {"@type": "Question", "name": "¿Arman PC gamer?", "acceptedAnswer": {"@type": "Answer", "text": "Sí. Te ayudamos a elegir piezas que calcen entre sí y con tu presupuesto, y lo armamos probado. Mano de obra de $40.000 a $70.000."}}, {"@type": "Question", "name": "¿Dan garantía?", "acceptedAnswer": {"@type": "Answer", "text": "Sí, 30 días sobre el trabajo realizado."}}]}</script>
+<style>
+  .hero{padding:64px 0 72px}
+  .hero h1{font-size:clamp(38px,5.6vw,68px);margin:18px 0 22px;max-width:17ch}
+  .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+  .trust{display:flex;flex-wrap:wrap;row-gap:14px;margin-top:44px;padding-top:20px;border-top:1px solid var(--line)}
+  .trust div{padding-right:22px;margin-right:22px;border-right:1px solid var(--line)}
+  .trust div:last-child{border:0;margin:0;padding:0}
+  .trust b{display:block;font-size:15px}
+  .trust span{font-size:13px;color:var(--muted)}
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .why h3{font-size:19px;margin:14px 0 8px}
+  .why p{color:var(--band-muted);font-size:15px}
+  .why .n{font:500 13px/1 var(--mono);color:var(--coral);display:flex;align-items:center;gap:12px}
+  .why .n::after{content:"";flex:1;height:1px;background:var(--band-line)}
+  @media (max-width:860px){.why{grid-template-columns:1fr;gap:28px}}
+  .split{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start}
+  .rows{border-top:1px solid var(--line)}
+  .row{display:grid;grid-template-columns:1fr auto 20px;gap:20px;align-items:center;padding:20px 8px;border-bottom:1px solid var(--line);text-decoration:none}
+  .row:hover{background:var(--surface)}
+  .row h3{font-size:17px;letter-spacing:-.01em;margin-bottom:2px}
+  .row p{font-size:14px;color:var(--muted)}
+  .row svg{width:18px;height:18px;color:var(--coral)}
+  .row .free{color:var(--ok)}
+  .more{display:inline-block;margin-top:22px;font-weight:700;color:var(--coral-ink);text-decoration:none}
+  @media (max-width:860px){.split{grid-template-columns:1fr;gap:28px}.row{grid-template-columns:1fr auto}.row svg{display:none}}
+  .faq{max-width:780px}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:20px 0;font-weight:700;font-size:17px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font:500 22px/1 var(--mono);color:var(--coral)}
+  .faq details[open] summary::after{content:"–"}
+  .faq details p{padding:0 0 20px;color:var(--ink-2);max-width:65ch}
+  .zones{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .zones a{text-decoration:none}
+  .cta .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+  .cta h2{font-size:clamp(34px,4.6vw,54px)}
+  .lines{display:flex;gap:12px;flex-wrap:wrap}
+  .line-btn{display:grid;gap:4px;padding:14px 22px;border-radius:14px;text-decoration:none;border:1px solid var(--line);background:var(--surface)}
+  .line-btn small{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .line-btn:hover{border-color:var(--coral)}
+</style>
+
+<div class="proto"><div class="wrap"><span><span class="flag">Maqueta</span>&nbsp; Página local · <span class="mono">pingcero.cl/chicureo</span></span><a href="index.html">← Todas las páginas</a></div></div>
+
+<header class="nav"><div class="wrap">
+  <a class="logo" href="inicio.html" aria-label="Ping Cero, inicio"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+  <nav aria-label="Principal"><ul>
+    <li><a href="inicio.html">Inicio</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="empresas.html">Empresas</a></li>
+    <li><a href="seguimiento.html">Seguimiento</a></li>
+    <li><a href="holaping.html">HolaPing</a></li>
+  </ul></nav>
+  <a class="btn btn-primary btn-sm" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20estoy%20en%20Chicureo%20y%20necesito%20ayuda%20con%20mi%20WiFi%20o%20mi%20PC" target="_blank" rel="noopener">WhatsApp</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <span class="eyebrow">Chicureo · Colina</span>
+  <h1 class="display">WiFi que llega a <em>toda la casa</em> en Chicureo.</h1>
+  <p class="lede">En casas grandes y de dos pisos el router del proveedor no alcanza. Medimos la señal pieza por pieza y la dejamos pareja para teletrabajo, clases y streaming.</p>
+  <div class="actions">
+    <a class="btn btn-primary" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20estoy%20en%20Chicureo%20y%20necesito%20ayuda%20con%20mi%20WiFi%20o%20mi%20PC" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.4 7.5L3 21l1.6-5.3A8.5 8.5 0 1 1 21 12z"/></svg>
+      Escríbenos por WhatsApp</a>
+    <a class="btn btn-ghost" href="servicios.html">Ver precios</a>
+  </div>
+  <div class="trust">
+    <div><b>Diagnóstico gratis</b><span>Siempre, antes de cotizar</span></div>
+    <div><b>Garantía 30 días</b><span>Si vuelve la falla, sin costo</span></div>
+    <div><b>A domicilio o en taller</b><span>Traslado informado antes de ir</span></div>
+  </div>
+</div></section>
+
+<section class="sec band"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Por qué Ping Cero en Chicureo</span>
+    <h2 class="display">Ingenieros del barrio, <b>precio claro</b>.</h2>
+  </div>
+  <ol class="why" style="list-style:none;margin:0;padding:0">
+    <li><div class="n">01</div><h3>Especialistas en redes</h3><p>Trabajamos en redes y monitoreo de infraestructura. Diseñamos el WiFi con mediciones, no a ojo.</p></li>
+    <li><div class="n">02</div><h3>Bajo −67 dBm se corta la videollamada</h3><p>Aunque el celular diga “conectado”. Te entregamos el mapa de señal antes y después.</p></li>
+    <li><div class="n">03</div><h3>Toda la familia</h3><p>Notebook del teletrabajo, PC gamer de los niños y la impresora que nunca conecta: lo revisamos en la misma visita.</p></li>
+  </ol>
+</div></section>
+
+<section class="sec sunk"><div class="wrap split">
+  <div class="sec-head" style="margin:0">
+    <span class="eyebrow">Lo que más nos piden en Chicureo</span>
+    <h2 class="display">Tarifas claras, <b>sin sorpresas</b>.</h2>
+    <p class="lede" style="font-size:16px">Precios referenciales de mano de obra. El diagnóstico gratis confirma el valor real antes de empezar.</p>
+  </div>
+  <div>
+    <div class="rows">
+      <a class="row" href="servicios.html"><div><h3>Configuración de redes y WiFi</h3><p>Hogar u oficina, con medición de señal</p></div><span class="price">$30.000 – $60.000</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="row" href="servicios.html"><div><h3>Armado de PC a pedido</h3><p>Piezas que calzan con tu presupuesto</p></div><span class="price">$40.000 – $70.000</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="row" href="servicios.html"><div><h3>Limpieza física + cambio de pasta térmica</h3><p>Baja temperaturas y mejora el rendimiento</p></div><span class="price">$20.000 – $35.000</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="row" href="servicios.html"><div><h3>Mantención general</h3><p>Limpieza, revisión de disco, batería y software</p></div><span class="price">$25.000 – $45.000</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <a class="more" href="servicios.html">Ver los 9 servicios y armar un presupuesto →</a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Preguntas frecuentes</span>
+    <h2 class="display">Lo que nos preguntan <b>en Chicureo</b>.</h2>
+  </div>
+  <div class="faq">
+    <details open><summary>¿Cuánto cuesta mejorar el WiFi de una casa en Chicureo?</summary><p>La configuración va de $30.000 a $60.000 más los equipos si se necesitan (mesh o puntos de acceso). Primero medimos y te decimos si basta con reubicar o reconfigurar lo que ya tienes.</p></details>
+    <details><summary>¿Trabajan en condominios?</summary><p>Sí. Coordinamos el acceso contigo y atendemos a domicilio con un recargo por traslado que te informamos antes.</p></details>
+    <details><summary>¿Arman PC gamer?</summary><p>Sí. Te ayudamos a elegir piezas que calcen entre sí y con tu presupuesto, y lo armamos probado. Mano de obra de $40.000 a $70.000.</p></details>
+    <details><summary>¿Dan garantía?</summary><p>Sí, 30 días sobre el trabajo realizado.</p></details>
+  </div>
+  <div style="margin-top:48px">
+    <span class="eyebrow">También atendemos en</span>
+    <div class="zones"><a class="chip" href="zona-batuco.html">Batuco</a><a class="chip" href="zona-lampa.html">Lampa</a><a class="chip" href="zona-colina.html">Colina</a></div>
+  </div>
+</div></section>
+
+<section class="sec cta sunk"><div class="wrap">
+  <div>
+    <span class="eyebrow">Dos líneas disponibles</span>
+    <h2 class="display" style="margin-top:14px">¿Estás en Chicureo?<br><b>Cuéntanos qué pasa.</b></h2>
+  </div>
+  <div class="lines">
+    <a class="line-btn" href="https://wa.me/56928274749?text=Hola%20PingCero%2C%20estoy%20en%20Chicureo%20y%20necesito%20ayuda%20con%20mi%20WiFi%20o%20mi%20PC" target="_blank" rel="noopener"><small>Línea 1</small><span class="price">+56 9 2827 4749</span></a>
+    <a class="line-btn" href="https://wa.me/56953699695?text=Hola%20PingCero%2C%20estoy%20en%20Chicureo%20y%20necesito%20ayuda%20con%20mi%20WiFi%20o%20mi%20PC" target="_blank" rel="noopener"><small>Línea 2</small><span class="price">+56 9 5369 9695</span></a>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <div>
+    <a class="logo" href="inicio.html"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="21" stroke="#E07B3C" stroke-width="1.5" opacity=".3"/><circle cx="24" cy="24" r="13" stroke="#E07B3C" stroke-width="2.5"/><circle cx="24" cy="24" r="5" fill="#E07B3C"/></svg><b>Ping</b><i class="pc-dot"></i><span>Cero</span></a>
+    <p>Diagnóstico, reparación y mantención de PC, notebooks y redes. Ingenieros en Batuco, Lampa, Colina y Chicureo.</p>
+  </div>
+  <div><h4>Sitio</h4><ul><li><a href="servicios.html">Servicios y precios</a></li><li><a href="empresas.html">Empresas</a></li><li><a href="seguimiento.html">Seguimiento de orden</a></li><li><a href="holaping.html">HolaPing</a></li></ul></div>
+  <div><h4>Contacto</h4><ul><li>Línea 1 · <span class="mono">+56 9 2827 4749</span></li><li>Línea 2 · <span class="mono">+56 9 5369 9695</span></li><li><a href="https://pingcero.cl/catalogo_ping_cero.pdf">Catálogo en PDF</a></li></ul></div>
+  <div class="legal"><span>© 2026 PingCero · Zona norte de Santiago</span><span>Atendemos en <a href="zona-batuco.html">Batuco</a> · <a href="zona-lampa.html">Lampa</a> · <a href="zona-colina.html">Colina</a> · <a href="zona-chicureo.html">Chicureo</a></span></div>
+</div></footer>
