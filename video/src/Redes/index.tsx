@@ -231,7 +231,8 @@ const Precio: React.FC<{ nombre: string; valor: string }> = ({
   );
 };
 
-const Gratis: React.FC = () => {
+/** Placa de la oferta. La comparte el clip ilustrado. */
+export const Gratis: React.FC = () => {
   const { v } = useFormato();
   return (
     <AbsoluteFill
@@ -286,7 +287,8 @@ const Gratis: React.FC = () => {
   );
 };
 
-const Cierre: React.FC = () => {
+/** Placa de contacto: es la misma en todos los clips, a propósito. */
+export const Cierre: React.FC = () => {
   const frame = useCurrentFrame();
   const { v } = useFormato();
   const pulse = (frame % 60) / 60;

@@ -8,8 +8,10 @@ las composiciones.
 
 | id | Formato | Dura | Para qué sirve |
 |---|---|---|---|
-| `ClipRedes` | 1080×1920 | 30 s | **El que se publica.** Reels, TikTok, Shorts, estado de WhatsApp. |
+| `ClipRedes` | 1080×1920 | 30 s | Clip con fotos. Reels, TikTok, Shorts, estado de WhatsApp. |
 | `ClipRedesHorizontal` | 1920×1080 | 30 s | El mismo clip para YouTube y Facebook. |
+| `ClipLimpieza` | 1080×1920 | 30 s | Clip ilustrado: el PC viejo y la limpieza, en vector plano. Sin fotos. |
+| `ClipLimpiezaHorizontal` | 1920×1080 | 30 s | El clip ilustrado en horizontal. |
 | `PingCeroHistoria` | 1920×1080 | 90 s | La historia completa en cuatro actos. |
 | `PingCeroHistoriaVertical` | 1080×1920 | 90 s | La historia completa, en vertical. |
 
@@ -22,9 +24,13 @@ las composiciones.
 
 ```console
 npm install
+npx remotion render ClipLimpieza out/pingcero-limpieza-vertical-9x16.mp4
 npx remotion render ClipRedes out/pingcero-redes-vertical-9x16.mp4
-npx remotion render ClipRedesHorizontal out/pingcero-redes-horizontal-16x9.mp4
 ```
+
+Los dos clips de 30 s cuentan lo mismo con lenguajes distintos —uno con
+fotografías y otro ilustrado— para poder alternar publicaciones sin que se vean
+repetidas.
 
 Para verlo y moverlo en el navegador:
 

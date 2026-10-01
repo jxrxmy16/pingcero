@@ -3,6 +3,7 @@ import { Composition } from "remotion";
 import { Presentacion } from "./PingCero";
 import { TOTAL_FRAMES } from "./PingCero/theme";
 import { DURACION_HISTORIA, Historia } from "./Historia";
+import { ClipLimpieza, DURACION_LIMPIEZA } from "./Limpieza";
 import { ClipRedes, DURACION_CLIP } from "./Redes";
 import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
@@ -61,6 +62,27 @@ export const RemotionRoot: React.FC = () => {
         id="ClipRedesHorizontal"
         component={ClipRedes}
         durationInFrames={DURACION_CLIP}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* Clip ilustrado de 30 s: el PC viejo y la limpieza, en vector plano.
+          No usa fotos, así que se puede publicar alternado con ClipRedes.
+          Render:  npx remotion render ClipLimpieza */}
+      <Composition
+        id="ClipLimpieza"
+        component={ClipLimpieza}
+        durationInFrames={DURACION_LIMPIEZA}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+
+      <Composition
+        id="ClipLimpiezaHorizontal"
+        component={ClipLimpieza}
+        durationInFrames={DURACION_LIMPIEZA}
         fps={30}
         width={1920}
         height={1080}
