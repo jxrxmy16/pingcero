@@ -1,3 +1,53 @@
+# Video de Ping Cero
+
+Proyecto de Remotion. Los textos, precios y teléfonos salen de
+`src/PingCero/data.ts`: ahí se cambian una vez y quedan corregidos en todas
+las composiciones.
+
+## Composiciones
+
+| id | Formato | Dura | Para qué sirve |
+|---|---|---|---|
+| `ClipRedes` | 1080×1920 | 30 s | **El que se publica.** Reels, TikTok, Shorts, estado de WhatsApp. |
+| `ClipRedesHorizontal` | 1920×1080 | 30 s | El mismo clip para YouTube y Facebook. |
+| `PingCeroHistoria` | 1920×1080 | 90 s | La historia completa en cuatro actos. |
+| `PingCeroHistoriaVertical` | 1080×1920 | 90 s | La historia completa, en vertical. |
+
+> Las dos composiciones de 90 s usan `public/hero-laptop-30fps.mp4`, que no está
+> versionado (el `.gitignore` deja fuera los `.mp4` por peso). En un clon nuevo
+> hay que copiar ese archivo a mano antes de renderizarlas. Las de 30 s no lo
+> usan: se renderizan con lo que está en el repo.
+
+## Renderizar
+
+```console
+npm install
+npx remotion render ClipRedes out/pingcero-redes-vertical-9x16.mp4
+npx remotion render ClipRedesHorizontal out/pingcero-redes-horizontal-16x9.mp4
+```
+
+Para verlo y moverlo en el navegador:
+
+```console
+npm run dev
+```
+
+## Antes de subir un cambio
+
+```console
+npm run lint
+```
+
+Hace `eslint` y `tsc` juntos.
+
+## Tipografía
+
+Plus Jakarta Sans se sirve desde `public/fuentes/`, no desde Google Fonts, para
+que el render no dependa de la red. Están los dos subconjuntos que necesita el
+español (latin y latin-ext) en archivo variable: cubren los pesos 200 a 800.
+
+---
+
 # Remotion video
 
 <p align="center">

@@ -9,44 +9,12 @@ import { Hero } from "../PingCero/Hero";
 import { LogoLockup } from "../PingCero/Logo";
 import { C } from "../PingCero/theme";
 import { FadeUp } from "../PingCero/ui";
+import { Corte, s } from "./Corte";
 import { useFormato } from "./formato";
 import { Etiqueta, Firma, Placa, Titular } from "./Toma";
 import { Toma as TomaTipo, TOMAS } from "./tomas";
 
-/** Segundos → frames. Todo el montaje se escribe en segundos, como el guion. */
-const s = (segundos: number) => Math.round(segundos * 30);
-
 export const DURACION_HISTORIA = s(90);
-
-/** Toma que ocupa desde `desde` hasta `hasta`, en segundos. */
-const Corte: React.FC<{
-  desde: number;
-  hasta: number;
-  entrada?: number;
-  children: (duracion: number) => React.ReactNode;
-}> = ({ desde, hasta, entrada = 0, children }) => {
-  const duracion = s(hasta) - s(desde);
-  return (
-    <Sequence from={s(desde)} durationInFrames={duracion} layout="none">
-      {entrada > 0 ? (
-        <Aparecer frames={entrada}>{children(duracion)}</Aparecer>
-      ) : (
-        children(duracion)
-      )}
-    </Sequence>
-  );
-};
-
-const Aparecer: React.FC<{ frames: number; children: React.ReactNode }> = ({
-  frames,
-  children,
-}) => {
-  const frame = useCurrentFrame();
-  const opacity = interpolate(frame, [0, frames], [0, 1], {
-    extrapolateRight: "clamp",
-  });
-  return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
-};
 
 export const Historia: React.FC = () => (
   <AbsoluteFill style={{ background: "#07080D" }}>

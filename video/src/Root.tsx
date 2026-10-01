@@ -3,6 +3,7 @@ import { Composition } from "remotion";
 import { Presentacion } from "./PingCero";
 import { TOTAL_FRAMES } from "./PingCero/theme";
 import { DURACION_HISTORIA, Historia } from "./Historia";
+import { ClipRedes, DURACION_CLIP } from "./Redes";
 import { HelloWorld, myCompSchema } from "./HelloWorld";
 import { Logo, myCompSchema2 } from "./HelloWorld/Logo";
 
@@ -40,6 +41,29 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1080}
         height={1920}
+      />
+
+      {/* Clip de 30 s para redes sociales. Es el que se publica primero:
+          vertical, se entiende sin audio y no depende del clip del notebook.
+          Render:  npx remotion render ClipRedes */}
+      <Composition
+        id="ClipRedes"
+        component={ClipRedes}
+        durationInFrames={DURACION_CLIP}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+
+      {/* El mismo clip en 16:9, para YouTube y para la portada de Facebook.
+          Render:  npx remotion render ClipRedesHorizontal */}
+      <Composition
+        id="ClipRedesHorizontal"
+        component={ClipRedes}
+        durationInFrames={DURACION_CLIP}
+        fps={30}
+        width={1920}
+        height={1080}
       />
 
       {/* ── Composiciones de ejemplo que trae la plantilla ── */}
